@@ -108,13 +108,11 @@ function addEvents(DT_id){
 	
 	var videoElement = document.getElementById(DT_id);
 	addEvent(videoElement,'error',errorHandler);
-	//videoElement.addEventListener('error', errorHandler, true); //video error with message 
 }
 
 function removeEvents(DT_id){
 	var videoElement = document.getElementById(DT_id);
-	removeEvent(videoElement,'error',errorHandler)
-	//videoElement.removeEventListener('error', errorHandler, true); //video error with message 
+	removeEvent(videoElement,'error',errorHandler);
 }
 
 function init(){

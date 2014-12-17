@@ -35,7 +35,7 @@ var devtripVideo = function(){
 	
 	function getSupport(video,str)
 	{
-		var support = video.canPlayType(str);//probably if codec is also passed
+		var support = video.canPlayType(str);//"probably" if codec is also passed.
 		if (support == "maybe") {
 			return str;
 		} else if (support == "") {
@@ -219,10 +219,6 @@ var devtripVideo = function(){
 		removeEvent(videoElement,"canplaythrough", canplaythroughHandler,false);//Ready to play whole video
 	};
 	
-	function addCallbackFunction(srcFun, callBackFun){
-		srcFun = callBackFun;
-	}
-
 	function init(params) {
 		var container = document.getElementById(params.containerId);
 		var video = document.createElement('video');
