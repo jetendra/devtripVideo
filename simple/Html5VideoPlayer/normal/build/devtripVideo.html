@@ -10,26 +10,28 @@
 		<center>
 			<div id="playercontainer1">
 				<script type="text/javascript">
-					DT_containerId = "playercontainer1";
-					DT_id = "videoplayer1";
-					DT_width = "320";
-					DT_height = "240";
-					DT_video = "abc";
-					DT_autoplay = false;
-					DT_videoImage = "abc.png";
-					init();
+					var params = {},_devtripVideo = new devtripVideo();
+					params.containerId = "playercontainer1";
+					params.width = "320";
+					params.height = "240";
+					params.video = "abc";
+					params.autoplay = false;
+					params.videoImage = "abc.png";
+					_devtripVideo.setPath("assets/");
+					_devtripVideo.init(params);					
 				</script>
 			</div>
 			<div id="playercontainer2">
 				<script type="text/javascript">
-					DT_containerId = "playercontainer2";
-					DT_id = "videoplayer2";
-					DT_width = "640";
-					DT_height = "480";
-					DT_video = "abc";
-					DT_autoplay = false;
-					DT_videoImage = "abc.png";
-					init();
+					var params = {},_devtripVideo1 = new devtripVideo();;
+					params.containerId = "playercontainer2";
+					params.width = "640";
+					params.height = "480";
+					params.video = "abc";
+					params.autoplay = false;
+					params.videoImage = "abc.png";
+					_devtripVideo1.setPath("assets/");
+					_devtripVideo1.init(params);
 				</script>
 			</div>
 		</center>
