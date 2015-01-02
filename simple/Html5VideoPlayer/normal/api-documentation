@@ -2,7 +2,7 @@ This player component need to be instantiated as follows -
 
 var _devtripVideo = new devtripVideo();
 
-With normal devtrip video component following methods are available -
+With normal devtrip video component following methods are available, these parameters are mandatory not optional -
 
 1. To associate player with a container use 
     params.containerId = "playercontainer1";
