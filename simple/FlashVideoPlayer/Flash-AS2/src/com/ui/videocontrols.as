@@ -17,6 +17,7 @@ The end-user documentation included with the redistribution, if any, must includ
 import src.com.utils.base.uiBase;
 import src.com.vo.devtripVo;
 import src.com.ui.speakerButton;
+import src.com.ui.videoplayer;
 
 class src.com.ui.videocontrols extends uiBase {
 	
@@ -25,7 +26,6 @@ class src.com.ui.videocontrols extends uiBase {
 	private static var _ui : MovieClip;
 	private var progressSlider : MovieClip;
 	private var speakerSlider : MovieClip;
-	
 	
 	public function videocontrols() {
 		if (_instance != null) throw Error('Singelton error');
@@ -39,39 +39,54 @@ class src.com.ui.videocontrols extends uiBase {
 		_data = devtripVo.instance.params;
 	}
 	
-	private function handleSeekRelease(target : MovieClip) {
-		
-	};
-	
 	private function loadHandler() : Void {
 		super.loadHandler();
 		addSeekSlider();
 		addVolumeSlider();
-		
 		resizeElements();
 	}
 	
 	private function addSeekSlider() : Void {
 		this.progressSlider.seekSliderArea.onPress = function(){
-			this._parent.seekSlider._x = this._xmouse;
-		}
+			var a : MovieClip = this._parent.seekSlider;
+			var b : Number = this._parent.seekSliderArea._width;
+			var c : Number = this._parent.seekSlider._width
+			a._x = this._xmouse;
+			videoplayer.setSteramTime( a._x / (b - c) * 100 );
+		};
 		this.progressSlider.seekSlider.onPress = function(){
 			startDrag(this,true, 0, 0 , this._parent._width - this._width, 0 );
 		};
 		this.progressSlider.seekSlider.onRelease = this.progressSlider.seekSlider.onReleaseOutside = function(){
-			this.stopDrag();
+			var a : MovieClip = this;
+			var b : Number = this._parent.seekSliderArea._width;
+			var c : Number = this._width;
+			a.stopDrag();
+			videoplayer.setSteramTime( a._x / (b - c) * 100 );
 		};
+	}
+	
+	public function setSeek(l : Number) : Void {
+		var a : MovieClip = this.progressSlider.seekSlider;
+		var b : Number = this.progressSlider.seekSliderArea._width;
+		a._x = (b - a._width) * l / 100;
 	}
 	
 	private function addVolumeSlider() : Void {
 		this.speakerSlider.sliderArea.onPress = function(){
-			this._parent.slider._x = this._xmouse;
+			var a : MovieClip = this._parent.slider;
+			var b : Number = this._parent.slider._width;
+			a._x = this._xmouse;
+			videoplayer.setVolume(Math.floor((a._x + b) / b * 100));
 		};
 		this.speakerSlider.slider.onPress = function(){
 			startDrag(this,true, 0, 0 , -1 * this._width, 0 );
 		};
 		this.speakerSlider.slider.onRelease = this.speakerSlider.slider.onReleaseOutside = function(){
-			this.stopDrag();
+			var a : MovieClip = this;
+			var b : Number = this._width;
+			a.stopDrag();
+			videoplayer.setVolume(Math.floor((a._x + b) / b * 100));
 		};
 	}
 	

@@ -55,7 +55,7 @@ class src.com.ui.playButton extends buttonBase {
 		else
 			setState("play");
 		
-		if(videoplayer.instance.isPlaying)
+		if(devtripVo.instance.isPlaying)
 			videoplayer.instance.pauseVideo();
 		else
 			videoplayer.instance.playVideo();

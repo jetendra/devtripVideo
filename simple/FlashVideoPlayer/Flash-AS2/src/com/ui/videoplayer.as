@@ -24,7 +24,8 @@ class src.com.ui.videoplayer extends uiBase {
 	private static var _netStrm : NetStream = null;
 	private static var _data : Object;
 	private static var _ui : MovieClip;
-	private var _isPlaying : Boolean;
+	private static var _videoSound :Sound;
+	private static var _loadedInterval:Number;
 
 	public function videoplayer() {
 		if (_instance != null) throw Error('Singelton error');
@@ -71,7 +72,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	private function loadPoster() : Void {
-		_ui.poster.loadMovie( _data.assetsPath + _data.videoImage );
+		_ui.poster.loadMovie( _data.assetsPath +"/"+_data.videoImage );
 		_ui.poster.loadedmovie = true;
 		addElement(_ui.poster);
 	}
@@ -80,12 +81,7 @@ class src.com.ui.videoplayer extends uiBase {
 		_ui.poster._visible = false;
 	}
 	
-	public function showPoster() : Void {
-		_ui.poster._visible = false;
-	}
-	
 	private function setVideo():Void {
-		//trace(file + "    file")
 		if (!_conVideo) {
 			_conVideo = new NetConnection();
 			_conVideo.connect(null);
@@ -93,8 +89,14 @@ class src.com.ui.videoplayer extends uiBase {
 		if (!_netStrm) {
 			_netStrm = new NetStream(_conVideo);
 			_netStrm.setBufferTime(3);
+			_netStrm.onMetaData = function(infoObject:Object) {
+				devtripVo.instance.infoObject = infoObject;
+				for (var propName:String in infoObject) {
+					trace(propName + " = " + infoObject[propName]);
+				}
+			};
+
 			_netStrm.onStatus = function(info) {
-				trace(info.code)
 				switch(info.code){
 					case "NetStream.Buffer.Empty" :
 						// BUFFER EMPTY - Data is not being received quickly enough to fill the buffer. 
@@ -112,9 +114,10 @@ class src.com.ui.videoplayer extends uiBase {
 						break;
 					case "NetStream.Play.Stop":
 						// PLAYBACK STOPPED - Playback has stopped.
-						this._isPlaying = false;
-						//
-						//_netStrm.resume();
+						devtripVo.instance.isPlaying = false;
+						clearInterval(_loadedInterval);
+						_loadedInterval = 0;
+						_ui.videocontrols.play_btn.gotoAndStop(1);
 						break;
 					case "NetStream.Play.StreamNotFound":
 						//The FLV passed to the play() method can't be found.
@@ -127,26 +130,43 @@ class src.com.ui.videoplayer extends uiBase {
 						// last valid position to which the user can seek.
 						break;
 					case "NetStream.Seek.Notify":
-						// 	The seek operation is complete.
+						// The seek operation is complete.
 						break;
 				}
 			}
 		}
 		_ui.video.attachVideo(_netStrm);
+		_videoSound = new Sound();
+		_ui.video.smoothing = true;
 	}
 	
 	public function playVideo(): Void {
-		this._isPlaying = true;
+		devtripVo.instance.isPlaying = true;
+		_loadedInterval = setInterval(checkBytesLoaded,100);
 		_netStrm.play(devtripVo.instance.params.video);
 	}
 	
 	public function pauseVideo(){
-		if(!this._isPlaying)_netStrm.seek(0);
+		if(devtripVo.instance.isPlaying)_netStrm.seek(1);
 		_netStrm.pause();
+		if(_loadedInterval == 0) {
+			_loadedInterval = setInterval(checkBytesLoaded,100);
+		} else {
+			clearInterval(_loadedInterval);
+			_loadedInterval = 0;
+		}
 	}
 	
-	public function get isPlaying():Boolean{
-		return _isPlaying;
+	public static function setVolume(l:Number) : Void {
+		if(l==3)l=0;
+		_videoSound.setVolume(l);
 	}
 	
+	public static function setSteramTime(l:Number) : Void {
+		_netStrm.seek(Math.floor(l / 100 * devtripVo.instance.infoObject.duration));
+	}
+	
+	private function checkBytesLoaded() {
+		_ui.videocontrols.setSeek(_netStrm.time / devtripVo.instance.infoObject.duration * 100);
+	}
 }

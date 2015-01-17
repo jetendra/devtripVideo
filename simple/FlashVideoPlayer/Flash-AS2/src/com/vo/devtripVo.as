@@ -21,6 +21,8 @@ class src.com.vo.devtripVo {
 	private static var _params : Object = new Object();
 	private static var _ui : MovieClip = null;
 	private static var _resizeFactor : Number = 1;
+	private static var _infoObject : Object;
+	private static var _isPlaying : Boolean;
 	
 	public function devtripVo() {
 		if (_instance != null) throw Error('Singelton error');
@@ -65,6 +67,23 @@ class src.com.vo.devtripVo {
 		} else {
 			_resizeFactor = widthRatio = heightRatio;
 		}
+	}
+	
+	public function set infoObject(obj : Object) : Void {
+		_infoObject = new Object();
+		_infoObject = obj;
+	}
+	
+	public function get infoObject() : Object {
+		return _infoObject;
+	}
+	
+	public function set isPlaying(value : Boolean) : Void {
+		_isPlaying = value;
+	}
+	
+	public function get isPlaying() : Boolean {
+		return _isPlaying;
 	}
 	
 }

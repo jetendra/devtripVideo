@@ -40,7 +40,7 @@ class src.com.player extends uiBase {
 			_data.video = "abc.mp4";
 			_data.autoplay = false;
 			_data.videoImage = "abc.png";
-			_data.assetsPath = "";
+			_data.assetsPath = "assets";
 		}
 		devtripVo.instance.params = _data;
 		devtripVo.instance.ui.attachMovie("videoplayer","videoplayer",1);
