@@ -15,44 +15,23 @@ The end-user documentation included with the redistribution, if any, must includ
 **/
 
 import src.com.vo.devtripVo;
-import src.com.utils.base.uiBase;
+import src.com.player;
 
-class src.com.player extends uiBase {
-	
-	private static var _instance : player = null;
-	private static var _ui : MovieClip = null;
-	private static var video : Video;
-	private static var _data : Object;
-	private static var _conVideo : NetConnection = null;
-	private static var _netStrm : NetStream = null;
-	
-	public function player(ui:MovieClip) {
-		devtripVo.instance.ui = ui;
-		init();
-	}
-	
-	private function initBaseProperties() : Void {
-		super.initBaseProperties();
-		/*if(devtripVo.instance.params == null){
-			_data = new Object();
-			_data.width = 640;
-			_data.height = 480;
-			_data.video = "abc.mp4";
-			_data.autoplay = false;
-			_data.videoImage = "abc.png";
-			_data.assetsPath = "assets";
-			devtripVo.instance.params = _data;
-		}*/
-		devtripVo.instance.ui.attachMovie("videoplayer","videoplayer",1);
-		devtripVo.instance.ui.attached = true;
-		addElement(devtripVo.instance.ui);
-	}
-	
-	private function loadHandler() : Void {
-		super.loadHandler();
-	}
-	
-	private function unloadHandler() : Void {
-		super.unloadHandler();
-	}
-}
+var DT_width;
+var DT_height;
+var DT_video;
+var DT_autoplay;
+var DT_videoImage;
+var DT_assetsPath;
+
+var _data : Object = new Object();
+
+_data.width = DT_width;
+_data.height = DT_height;
+_data.video = DT_video;
+_data.autoplay = DT_autoplay;
+_data.videoImage = DT_videoImage;
+_data.assetsPath = DT_assetsPath;
+devtripVo.instance.params = _data;
+
+var _player : player = new player(this.main_mc);
