@@ -20,6 +20,11 @@ import src.com.utils.base.uiBase;
 class src.com.player extends uiBase {
 	
 	private static var _instance : player = null;
+	private static var _ui : MovieClip = null;
+	private static var video : Video;
+	private static var _data : Object;
+	private static var _conVideo : NetConnection = null;
+	private static var _netStrm : NetStream = null;
 	
 	public function player(ui:MovieClip) {
 		devtripVo.instance.ui = ui;
@@ -28,10 +33,16 @@ class src.com.player extends uiBase {
 	
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
-		attachVideoUI();
-	}
-	
-	private function attachVideoUI() : Void {
+		/*if(devtripVo.instance.params == null){
+			_data = new Object();
+			_data.width = 640;
+			_data.height = 480;
+			_data.video = "abc.mp4";
+			_data.autoplay = false;
+			_data.videoImage = "abc.png";
+			_data.assetsPath = "assets";
+			devtripVo.instance.params = _data;
+		}*/
 		devtripVo.instance.ui.attachMovie("videoplayer","videoplayer",1);
 		devtripVo.instance.ui.attached = true;
 		addElement(devtripVo.instance.ui);
