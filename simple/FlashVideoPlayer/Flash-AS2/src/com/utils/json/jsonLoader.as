@@ -13,35 +13,19 @@ Except as contained in this notice, the name(s) of the above copyright holders s
 The end-user documentation included with the redistribution, if any, must include the following acknowledgment: "This product includes software developed by The DevtripVideo Project, (http://www.devtrip.com/) and its contributors", in the same place and form as other third-party acknowledgments. Alternately, this acknowledgment may appear in the software itself, in the same form and location as other such third-party acknowledgments.
 *
 **/
+import src.com.utils.json.JSON;
 
-import src.com.vo.devtripVo;
-import src.com.utils.base.uiBase;
-
-class src.com.player extends uiBase {
+class src.com.utils.json.jsonLoader extends LoadVars {
 	
-	private static var _instance : player = null;
-	
-	public function player(ui:MovieClip) {
-		devtripVo.instance.ui = ui;
-		init();
+	public function jsonLoader(){
+		super();
 	}
 	
-	private function initBaseProperties() : Void {
-		super.initBaseProperties();
-		attachVideoUI();
+	public function getJsonObject(data : String) : Object {
+		return JSON.parse(data);
 	}
 	
-	private function attachVideoUI() : Void {
-		devtripVo.instance.ui.attachMovie("videoplayer","videoplayer",1);
-		devtripVo.instance.ui.attached = true;
-		addElement(devtripVo.instance.ui);
-	}
-	
-	private function loadHandler() : Void {
-		super.loadHandler();
-	}
-	
-	private function unloadHandler() : Void {
-		super.unloadHandler();
+	public function getJsonString(data : Object) : String {
+		return JSON.stringify(data);
 	}
 }
