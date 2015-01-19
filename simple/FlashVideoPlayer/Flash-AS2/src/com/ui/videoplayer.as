@@ -147,7 +147,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	public function pauseVideo(){
-		if(devtripVo.instance.isPlaying)_netStrm.seek(1);
+		if(!devtripVo.instance.isPlaying)_netStrm.seek(1);
 		_netStrm.pause();
 		if(_loadedInterval == 0) {
 			_loadedInterval = setInterval(checkBytesLoaded,100);
