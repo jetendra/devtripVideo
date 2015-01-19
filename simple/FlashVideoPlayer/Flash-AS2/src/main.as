@@ -14,24 +14,36 @@ The end-user documentation included with the redistribution, if any, must includ
 *
 **/
 
-import src.com.vo.devtripVo;
 import src.com.player;
+import src.com.vo.devtripVo;
+import src.com.utils.json.jsonLoader;
 
-var DT_width;
-var DT_height;
-var DT_video;
-var DT_autoplay;
-var DT_videoImage;
-var DT_assetsPath;
+var jL:jsonLoader = new jsonLoader();
+var jObj : Object = new Object();
+var _player : player;
+var url : String = (url)? url = url : url = "data.json";
 
-var _data : Object = new Object();
+jL.onData = function (src:String) {
+	trace(src)
+	if(src != undefined){
+    	jObj = jL.getJsonObject(src);
+		init();
+	} else {
+		jL.onLoad(false);
+	}
+}
 
-_data.width = DT_width;
-_data.height = DT_height;
-_data.video = DT_video;
-_data.autoplay = DT_autoplay;
-_data.videoImage = DT_videoImage;
-_data.assetsPath = DT_assetsPath;
-devtripVo.instance.params = _data;
+jL.onLoad = function(success:Boolean) {
+	if (success) {
+		trace("data load success");
+	} else {
+		trace("data load error");
+	}
+}
 
-var _player : player = new player(this.main_mc);
+jL.load(url);
+
+function init(){
+	devtripVo.instance.params = jObj.params;
+	_player = new player(this.main_mc);
+}

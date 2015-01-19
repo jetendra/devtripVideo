@@ -1,0 +1,12 @@
+﻿{
+	"params":{
+		"width":"640",
+		"height":"480",
+		"video":"abc.mp4",
+		"autoplay":"false",
+		"videoImage":"abc.png",
+		"assetsPath":"assets"
+	},
+	"config":{
+	}
+}
