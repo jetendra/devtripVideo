@@ -14,36 +14,48 @@ The end-user documentation included with the redistribution, if any, must includ
 *
 **/
 
-import src.com.player;
 import src.com.vo.devtripVo;
-import src.com.utils.json.jsonLoader;
+import src.com.player;
+import src.com.utils.xml.xmlLoader;
+import src.com.utils.xml.XdataToE4X;
+import src.com.utils.dataLoader;
 
-var jL:jsonLoader = new jsonLoader();
-var jObj : Object = new Object();
+var DT_width;
+var DT_height;
+var DT_video;
+var DT_autoplay;
+var DT_videoImage;
+var DT_assetsPath;
 var _player : player;
-var url : String = (url)? url = url : url = "data.json";
+var url;
+var _data : Object = new Object();
 
-jL.onData = function (src:String) {
-	trace(src)
-	if(src != undefined){
-    	jObj = jL.getJsonObject(src);
-		init();
-	} else {
-		jL.onLoad(false);
-	}
+function onXMLLoadHandler(data : XML){
+	_data = XdataToE4X.convertFromXML(data).config;
+	init();
 }
 
-jL.onLoad = function(success:Boolean) {
-	if (success) {
-		trace("data load success");
-	} else {
-		trace("data load error");
-	}
+function onJSONLoadHandler(data : Object){
+	_data = data;
+	init();
 }
-
-jL.load(url);
 
 function init(){
-	devtripVo.instance.params = jObj.params;
+	devtripVo.instance.params = _data.params;
+	_player = new player(this.main_mc);
+}
+
+if(url && url.indexOf(".xml") <> -1){
+	xmlLoader.instance.loadFile(url,onXMLLoadHandler);
+} else if (url && url.indexOf(".json") <> -1){
+	dataLoader.instance.loadFile(url,onJSONLoadHandler);
+} else {
+	_data.width = DT_width ? DT_width : 640;
+	_data.height = DT_height ? DT_height : 480;
+	_data.video = DT_video ? DT_video : "abc.mp4";
+	_data.autoplay = DT_autoplay ? DT_autoplay : false;
+	_data.videoImage = DT_videoImage ? DT_videoImage : "abc.png";
+	_data.assetsPath = DT_assetsPath ? DT_assetsPath : "assets";
+	devtripVo.instance.params = _data;
 	_player = new player(this.main_mc);
 }

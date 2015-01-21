@@ -26,13 +26,21 @@ class src.com.ui.videoplayer extends uiBase {
 	private static var _ui : MovieClip;
 	private static var _videoSound :Sound;
 	private static var _loadedInterval:Number;
-
+	
+	/**
+	 * Constructor [Singelton]
+	 * */
 	public function videoplayer() {
 		if (_instance != null) throw Error('Singelton error');
 		_instance = this;
 		init();
 	}
 	
+	/**
+	 * @Public [access point for class]
+	 * @param - [NA] 
+	 * @return - [available instance of the class
+	 * */
 	public static function get instance() : videoplayer {
 		if(_instance == null){
 			_instance = new videoplayer();
@@ -40,6 +48,11 @@ class src.com.ui.videoplayer extends uiBase {
 		return _instance;
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
 		_ui = devtripVo.instance.ui.videoplayer;
@@ -50,6 +63,11 @@ class src.com.ui.videoplayer extends uiBase {
 		addElement(devtripVo.instance.ui.videoplayer);
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function loadHandler() : Void {
 		super.loadHandler();
 		resizeElements();
@@ -57,10 +75,20 @@ class src.com.ui.videoplayer extends uiBase {
 		setVideo();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function unloadHandler() : Void {
 		super.unloadHandler();
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function resizeElements():Void{
 		var _resizeFactor : Object = devtripVo.instance.resizeFactor;
 		_ui.video._xscale =  _resizeFactor.widthRatio;
@@ -71,16 +99,31 @@ class src.com.ui.videoplayer extends uiBase {
 		_ui.poster._yscale =  _resizeFactor.heightRatio;
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function loadPoster() : Void {
 		_ui.poster.loadMovie( _data.assetsPath +"/"+_data.videoImage );
 		_ui.poster.loadedmovie = true;
 		addElement(_ui.poster);
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	public function hidePoster() : Void {
 		_ui.poster._visible = false;
 	}
 	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function setVideo():Void {
 		if (!_conVideo) {
 			_conVideo = new NetConnection();
@@ -140,12 +183,22 @@ class src.com.ui.videoplayer extends uiBase {
 		_ui.video.smoothing = true;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	public function playVideo(): Void {
 		devtripVo.instance.isPlaying = true;
 		_loadedInterval = setInterval(checkBytesLoaded,100);
 		_netStrm.play(devtripVo.instance.params.video);
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	public function pauseVideo(){
 		if(!devtripVo.instance.isPlaying)_netStrm.seek(1);
 		_netStrm.pause();
@@ -157,15 +210,30 @@ class src.com.ui.videoplayer extends uiBase {
 		}
 	}
 	
+	/**
+	 * @Public
+	 * @param - [Number] 
+	 * @return - [Void]
+	 * */
 	public static function setVolume(l:Number) : Void {
 		if(l==3)l=0;
 		_videoSound.setVolume(l);
 	}
 	
+	/**
+	 * @Public
+	 * @param - [Number] 
+	 * @return - [Void]
+	 * */
 	public static function setSteramTime(l:Number) : Void {
 		_netStrm.seek(Math.floor(l / 100 * devtripVo.instance.infoObject.duration));
 	}
 	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function checkBytesLoaded() {
 		_ui.videocontrols.setSeek(_netStrm.time / devtripVo.instance.infoObject.duration * 100);
 	}

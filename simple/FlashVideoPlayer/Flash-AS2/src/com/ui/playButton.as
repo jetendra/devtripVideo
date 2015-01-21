@@ -22,30 +22,57 @@ class src.com.ui.playButton extends buttonBase {
 	
 	private static var _instance : playButton = null;
 	
-
+	/**
+	 * Constructor [Singelton]
+	 * */
 	public function playButton() {
 		if (_instance != null) throw Error('Singelton error');
 		_instance = this;
 		init();
 	}
-		
+	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function loadHandler() : Void {
 		super.loadHandler();
 		resizeElements();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function unloadHandler() : Void {
 		super.unloadHandler();
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function resizeElements():Void{
 		
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function onPressHandler() : Void {
 		super.onPressHandler();
 		videoplayer.instance.hidePoster();
@@ -61,10 +88,20 @@ class src.com.ui.playButton extends buttonBase {
 			videoplayer.instance.playVideo();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function onReleaseHandler() : Void {
 		super.onReleaseHandler();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function onReleaseOutsideHandler() : Void {
 		super.onReleaseOutsideHandler();
 	}

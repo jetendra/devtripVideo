@@ -18,7 +18,13 @@ class src.com.utils.json.JSON {
 	public function JSON(){
 		
 	}
-
+	
+	/**
+	 * @public
+	 * @param - [JSON Object] 
+	 * @return - [Stirng]
+	 * */
+	 
 	public static function stringify(arg):String {
 
         var c, i, l, s = '', v;
@@ -93,7 +99,13 @@ class src.com.utils.json.JSON {
 				return 'null';
 		}
     }
-
+	
+	/**
+	 * @public
+	 * @param - [String] 
+	 * @return - [Object]
+	 * */
+	 
 	public static function parse(text:String):Object {
 		var at = 0;
         var ch = ' ';
@@ -236,7 +248,7 @@ class src.com.utils.json.JSON {
                 _white();
                 if (ch == '}') {
                     _next();
-                    return o;
+					return o;
                 }
                 while (ch) {
                     k = _string();
@@ -313,9 +325,10 @@ class src.com.utils.json.JSON {
 
         _value = function() {
             _white();
+			
             switch (ch) {
                 case '{':
-                    return _object();
+					return _object();
                 case '[':
                     return _array();
                 case '"':
@@ -326,7 +339,7 @@ class src.com.utils.json.JSON {
                     return ch >= '0' && ch <= '9' ? _number() : _word();
             }
         }
-
-        return _value();
+		
+		return _value();
     }
 }

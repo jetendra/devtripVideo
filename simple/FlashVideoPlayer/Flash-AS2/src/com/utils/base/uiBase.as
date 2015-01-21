@@ -20,10 +20,18 @@ class src.com.utils.base.uiBase extends MovieClip implements uiInterface {
 	
 	private var _elementArr : Array = [];
 	
+	/**
+	 * Constructor
+	 * */ 
 	public function uiBase() {
 		
 	}
 	
+	/**
+	 * @init() definition
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	function init() : Void {
 		initBaseProperties();
 		this.onLoad = function() {
@@ -34,23 +42,49 @@ class src.com.utils.base.uiBase extends MovieClip implements uiInterface {
 		}
 	}
 	
+	/**
+	 * @initBaseProperties() definition
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	function initBaseProperties() : Void {
 		trace('here in initBaseProperties from base class');
 	}
 	
+	/**
+	 * @loadHandler() definition
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	function loadHandler() : Void {
 		trace('here in load handler');
 	}
 	
+	/**
+	 * @unloadHandler() definition
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	function unloadHandler() : Void {
 		trace('here in unload handler');
 		removeElement();
 	}
 	
+	/**
+	 * @addElement() definition
+	 * @param - [MovieClip] 
+	 * @return - [Void]
+	 * */
 	function addElement(mc : MovieClip) : Void {
 		_elementArr.push(mc);
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * Removed loaded / attached movie clip from the referenced symbol.
+	 * */
 	private function removeElement() : Void {
 		for (var i in _elementArr){
 			if(_elementArr[i].attached)

@@ -27,18 +27,31 @@ class src.com.ui.videocontrols extends uiBase {
 	private var progressSlider : MovieClip;
 	private var speakerSlider : MovieClip;
 	
+	/**
+	 * Constructor [Singelton]
+	 * */
 	public function videocontrols() {
 		if (_instance != null) throw Error('Singelton error');
 		_instance = this;
 		init();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
 		_ui = devtripVo.instance.ui.videoplayer;
 		_data = devtripVo.instance.params;
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function loadHandler() : Void {
 		super.loadHandler();
 		addSeekSlider();
@@ -46,6 +59,11 @@ class src.com.ui.videocontrols extends uiBase {
 		resizeElements();
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function addSeekSlider() : Void {
 		this.progressSlider.seekSliderArea.onPress = function(){
 			var a : MovieClip = this._parent.seekSlider;
@@ -66,12 +84,22 @@ class src.com.ui.videocontrols extends uiBase {
 		};
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	public function setSeek(l : Number) : Void {
 		var a : MovieClip = this.progressSlider.seekSlider;
 		var b : Number = this.progressSlider.seekSliderArea._width;
 		a._x = (b - a._width) * l / 100;
 	}
 	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function addVolumeSlider() : Void {
 		this.speakerSlider.sliderArea.onPress = function(){
 			var a : MovieClip = this._parent.slider;
@@ -90,10 +118,20 @@ class src.com.ui.videocontrols extends uiBase {
 		};
 	}
 	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function unloadHandler() : Void {
 		super.unloadHandler();
 	}
 	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function resizeElements():Void{
 		
 	}

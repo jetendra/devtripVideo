@@ -20,10 +20,18 @@ class src.com.utils.base.buttonBase extends MovieClip implements buttonInterface
 	
 	private var _elementArr : Array = [];
 	
+	/**
+	 * Constructor
+	 * */
 	public function buttonBase() {
 		
 	}
 	
+	/**
+	 * @init() definition
+	 * @param - [AN] 
+	 * @return - [NA]
+	 * */
 	function init() : Void {
 		initBaseProperties();
 		this.onLoad 			= function() { loadHandler() };
@@ -44,82 +52,183 @@ class src.com.utils.base.buttonBase extends MovieClip implements buttonInterface
 		this.onSetFocus 		= function(oldFocus : Object) { onSetFocusHandler() };
 	}
 	
+	/**
+	 * @initBaseProperties() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function initBaseProperties() : Void {
 		
 	}
 	
+	/**
+	 * @loadHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function loadHandler() : Void {
 		
 	}
 	
+	/**
+	 * @unloadHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function unloadHandler() : Void {
 		removeElement();
 	}
 	
+	/**
+	 * @addElement() definition
+	 * @param - [MovieClip] 
+	 * @return - [NA]
+	 * */
 	function addElement(mc : MovieClip) : Void {
 		_elementArr.push(mc);
 	}
 	
+	/**
+	 * @setState() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function setState(str : String) : Void {
 		this.gotoAndStop(str);
 	}
 	
+	/**
+	 * @onDragOutHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onDragOutHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onDragOverHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onDragOverHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onKeyDownHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onKeyDownHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onKeyUpHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onKeyUpHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onKillFocusHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onKillFocusHandler(newFocus : Object) : Void {
 		
 	}
 	
+	/**
+	 * @onMouseDownHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onMouseDownHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onMouseMoveHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onMouseMoveHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onMouseUpHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onMouseUpHandler() : Void {
 		
 	}
 	
+	/**
+	 * @onPressHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onPressHandler() : Void {
 		setState('normal');
 	}
 	
+	/**
+	 * @onReleaseHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onReleaseHandler() : Void {
 		setState('normal');
 	}
 	
+	/**
+	 * @onReleaseOutsideHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onReleaseOutsideHandler() : Void {
 		setState('normal');
 	}
 	
+	/**
+	 * @onRollOutHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onRollOutHandler() : Void {
 		setState('normal');
 	}
 	
+	/**
+	 * @onRollOverHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onRollOverHandler() : Void {
 		setState('over');
 	}
 	
+	/**
+	 * @onSetFocusHandler() definition
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	function onSetFocusHandler(oldFocus : Object) : Void {
 		
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * Removed loaded / attached movie clip from the referenced symbol.
+	 * */
 	private function removeElement() : Void {
 		for (var i in _elementArr){
 			if(_elementArr[i].attached)

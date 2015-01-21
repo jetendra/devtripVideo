@@ -24,11 +24,19 @@ class src.com.vo.devtripVo {
 	private static var _infoObject : Object;
 	private static var _isPlaying : Boolean;
 	
+	/**
+	 * Constructor [Singelton]
+	 * */
 	public function devtripVo() {
 		if (_instance != null) throw Error('Singelton error');
 		_instance = this;
 	}
 	
+	/**
+	 * @Public [access point for class]
+	 * @param - [NA] 
+	 * @return - [available instance of the class
+	 * */
 	public static function get instance() : devtripVo {
 		if(_instance == null){
 			_instance = new devtripVo();
@@ -36,27 +44,57 @@ class src.com.vo.devtripVo {
 		return _instance;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [Object] 
+	 * @return - [NA]
+	 * */
 	public function set params(value : Object) : Void {
 		_params = value;
 		calculateResizeRatio();
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Object]
+	 * */
 	public function get params() : Object {
 		return _params;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [MovieClip] 
+	 * @return - [NA]
+	 * */
 	public function set ui(value : MovieClip) : Void {
 		_ui = value;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [MovieClip]
+	 * */
 	public function get ui() : MovieClip {
 		return _ui;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Number]
+	 * */
 	public function get resizeFactor () : Number {
 		return _resizeFactor;
 	}
 	
+	/**
+	 * @Private 
+	 * @param - [NA] 
+	 * @return - [NA]
+	 * */
 	private function calculateResizeRatio(): Void {
 		var widthRatio : Number = Number(_params.width) / 640;
 		var heightRatio : Number = Number(_params.height) / 480;
@@ -69,19 +107,39 @@ class src.com.vo.devtripVo {
 		}
 	}
 	
+	/**
+	 * @Public
+	 * @param - [Object] 
+	 * @return - [NA]
+	 * */
 	public function set infoObject(obj : Object) : Void {
 		_infoObject = new Object();
 		_infoObject = obj;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Object]
+	 * */
 	public function get infoObject() : Object {
 		return _infoObject;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [Boolean] 
+	 * @return - [NA]
+	 * */
 	public function set isPlaying(value : Boolean) : Void {
 		_isPlaying = value;
 	}
 	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Boolean]
+	 * */
 	public function get isPlaying() : Boolean {
 		return _isPlaying;
 	}

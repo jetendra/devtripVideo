@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config id="0">
+	<params>
+		<width>640</width>
+		<height>480</height>
+		<video>abc.mp4</video>
+		<autoplay>false</autoplay>
+		<videoImage>abc.png</videoImage>
+		<assetsPath>assets</assetsPath>
+	</params>
+</config>

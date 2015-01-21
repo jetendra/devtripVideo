@@ -13,36 +13,51 @@ Except as contained in this notice, the name(s) of the above copyright holders s
 The end-user documentation included with the redistribution, if any, must include the following acknowledgment: "This product includes software developed by The DevtripVideo Project, (http://www.devtrip.com/) and its contributors", in the same place and form as other third-party acknowledgments. Alternately, this acknowledgment may appear in the software itself, in the same form and location as other such third-party acknowledgments.
 *
 **/
+import src.com.utils.json.jsonLoader;
 
-import src.com.utils.json.JSON;
-
-class src.com.utils.json.jsonLoader extends LoadVars {
+class src.com.utils.dataLoader{
 	
-	/**
-	 * Constructor
-	 * */
-	 
-	public function jsonLoader(){
-		super();
-	}
-		
-	/**
-	 * @public
-	 * @param - [String - to be converted in JSON Object] 
-	 * @return - [Object]
-	 * */
+	private static var _instance : dataLoader;
+	private static var jL : jsonLoader;
+	private static var obj : Object;
 	
-	public function getJsonObject(data : String) : Object {
-		return JSON.parse(data);
+	public static function get instance() : dataLoader {
+		if(_instance == null){
+			_instance = new dataLoader();
+		}
+		return _instance;
 	}
 	
-	/**
-	 * @public
-	 * @param - [Object - to be converted in string] 
-	 * @return - [String]
-	 * */
-	
-	public function getJsonString(data : Object) : String {
-		return JSON.stringify(data);
+	public function loadFile(fileRef : String, dataLoaded : Function):Void {
+		if (jL) {
+			delete jL;
+			jL = null;
+		}
+		jL = new jsonLoader();
+		jL.onData = function (src:String) {
+			if(src != undefined){
+				dataLoaded(getJsonObject(src));
+			} else {
+				jL.onLoad(false);
+			}
+		}
+		jL.onLoad = function(success : Boolean) {
+			if (success) {
+				trace("data loaded");
+			}else {
+				_instance.errorEventHandler(fileRef);
+			}
+		}
+		jL.load(fileRef);
 	}
+	
+	private function getJsonObject(src : String) : Object {
+		return jL.getJsonObject(src);
+	}
+	
+	private function errorEventHandler(fileRef : String) : Void {
+		trace("invalid XML '" + fileRef + "'");
+	}
+	
+	
 }

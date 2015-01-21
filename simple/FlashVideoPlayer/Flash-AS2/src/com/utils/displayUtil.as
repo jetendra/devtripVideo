@@ -19,6 +19,9 @@ class src.com.utils.displayUtil extends MovieClip {
 	
 	private static var _instance : displayUtil;
 	
+	/**
+	 * Constructor
+	 * */ 
 	public function displayUtil() {
 		
 	}

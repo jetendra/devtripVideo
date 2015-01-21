@@ -21,26 +21,49 @@ class src.com.player extends uiBase {
 	
 	private static var _instance : player = null;
 	
+	/**
+	 * Constructor [Singelton]
+	 * */
 	public function player(ui:MovieClip) {
 		devtripVo.instance.ui = ui;
 		init();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
 		attachVideoUI();
 	}
 	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function attachVideoUI() : Void {
 		devtripVo.instance.ui.attachMovie("videoplayer","videoplayer",1);
 		devtripVo.instance.ui.attached = true;
 		addElement(devtripVo.instance.ui);
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function loadHandler() : Void {
 		super.loadHandler();
 	}
 	
+	/**
+	 * @Private [Derived from base class]
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
 	private function unloadHandler() : Void {
 		super.unloadHandler();
 	}
