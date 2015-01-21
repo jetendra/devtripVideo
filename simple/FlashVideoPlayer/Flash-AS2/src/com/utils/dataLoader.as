@@ -21,6 +21,10 @@ class src.com.utils.dataLoader{
 	private static var jL : jsonLoader;
 	private static var obj : Object;
 	
+	/**
+	 * privides a single refernce of this class 
+	 * 
+	 * */
 	public static function get instance() : dataLoader {
 		if(_instance == null){
 			_instance = new dataLoader();
@@ -28,6 +32,11 @@ class src.com.utils.dataLoader{
 		return _instance;
 	}
 	
+	/**
+	 * @public
+	 * @param - [String - file name url, Function - callback loaded event/function] 
+	 * @return - [Void]
+	 * */
 	public function loadFile(fileRef : String, dataLoaded : Function):Void {
 		if (jL) {
 			delete jL;
@@ -51,10 +60,20 @@ class src.com.utils.dataLoader{
 		jL.load(fileRef);
 	}
 	
+	/**
+	 * @private
+	 * @param - [String - data source] 
+	 * @return - [Object]
+	 * */
 	private function getJsonObject(src : String) : Object {
 		return jL.getJsonObject(src);
 	}
 	
+	/**
+	 * @private
+	 * @param - [String - file reference] 
+	 * @return - [Void]
+	 * */
 	private function errorEventHandler(fileRef : String) : Void {
 		trace("invalid XML '" + fileRef + "'");
 	}
