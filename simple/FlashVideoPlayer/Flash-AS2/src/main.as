@@ -32,30 +32,37 @@ var _data : Object = new Object();
 
 function onXMLLoadHandler(data : XML){
 	_data = XdataToE4X.convertFromXML(data).config;
-	init();
+	init(_data.params);
 }
 
 function onJSONLoadHandler(data : Object){
 	_data = data;
-	init();
+	init(_data.params);
 }
 
-function init(){
-	devtripVo.instance.params = _data.params;
-	_player = new player(this.main_mc);
-}
-
-if(url && url.indexOf(".xml") <> -1){
-	xmlLoader.instance.loadFile(url,onXMLLoadHandler);
-} else if (url && url.indexOf(".json") <> -1){
-	dataLoader.instance.loadFile(url,onJSONLoadHandler);
-} else {
+function onflashVarsLoadHandler(){
 	_data.width = DT_width ? DT_width : 640;
 	_data.height = DT_height ? DT_height : 480;
 	_data.video = DT_video ? DT_video : "abc.mp4";
 	_data.autoplay = DT_autoplay ? DT_autoplay : false;
 	_data.videoImage = DT_videoImage ? DT_videoImage : "abc.png";
 	_data.assetsPath = DT_assetsPath ? DT_assetsPath : "assets";
-	devtripVo.instance.params = _data;
+	init(_data);
+}
+
+function init(obj : Object){
+	devtripVo.instance.params = obj;
 	_player = new player(this.main_mc);
 }
+
+function initiateDataLoad(){
+	if(url && url.indexOf(".xml") <> -1){
+		xmlLoader.instance.loadFile(url,onXMLLoadHandler);
+	} else if (url && url.indexOf(".json") <> -1){
+		dataLoader.instance.loadFile(url,onJSONLoadHandler);
+	} else {
+		onflashVarsLoadHandler();
+	}
+}
+
+initiateDataLoad();
