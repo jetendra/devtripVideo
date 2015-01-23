@@ -8,4 +8,11 @@
 		<videoImage>abc.png</videoImage>
 		<assetsPath>assets</assetsPath>
 	</params>
+	<config>
+	</config>
+	<copyright>
+		<info><![CDATA[© 2015 devtrip video]]></info>
+		<visitdata><![CDATA[visit DevTrip website]]></visitdata>
+		<visiturl><![CDATA[http://www.devtrip.com]]></visiturl>
+	</copyright>
 </config>

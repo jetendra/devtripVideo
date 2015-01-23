@@ -8,5 +8,10 @@
 		"assetsPath":"assets"
 	},
 	"config":{
+	},
+	"copyright":{
+		"info":"© 2015 devtrip video",
+		"visitdata":"visit DevTrip website",
+		"visiturl":"http://www.devtrip.com"
 	}
 }

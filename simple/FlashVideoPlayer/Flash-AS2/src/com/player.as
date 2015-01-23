@@ -37,6 +37,7 @@ class src.com.player extends uiBase {
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
 		attachVideoUI();
+		configureContextMenue();
 	}
 	
 	/**
@@ -48,6 +49,39 @@ class src.com.player extends uiBase {
 		devtripVo.instance.ui.attachMovie("videoplayer","videoplayer",1);
 		devtripVo.instance.ui.attached = true;
 		addElement(devtripVo.instance.ui);
+	}
+	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
+	private function configureContextMenue() : Void {
+		var myMenu:ContextMenu = new ContextMenu();
+		myMenu.hideBuiltInItems();
+		var copyrightNotice:ContextMenuItem = new ContextMenuItem(devtripVo.instance.copyright.info, deadClick);
+		var mySiteLink:ContextMenuItem = new ContextMenuItem(devtripVo.instance.copyright.visitdata, gotoMySite);
+		myMenu.customItems.push(mySiteLink, copyrightNotice);
+		_root.menu = myMenu;
+		copyrightNotice.separatorBefore = true;
+	}
+	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
+	private function deadClick() : Void {
+	
+	}
+	
+	/**
+	 * @Private
+	 * @param - [NA] 
+	 * @return - [Void]
+	 * */
+	private function gotoMySite() : Void {
+		_root.getURL(devtripVo.instance.copyright.visiturl, "_top");
 	}
 	
 	/**

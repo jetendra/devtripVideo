@@ -19,6 +19,8 @@ class src.com.vo.devtripVo {
 	
 	private static var _instance : devtripVo = null;
 	private static var _params : Object = new Object();
+	private static var _config : Object = new Object();
+	private static var _copyright : Object = new Object();
 	private static var _ui : MovieClip = null;
 	private static var _resizeFactor : Number = 1;
 	private static var _infoObject : Object;
@@ -61,6 +63,42 @@ class src.com.vo.devtripVo {
 	 * */
 	public function get params() : Object {
 		return _params;
+	}
+	
+	/**
+	 * @Public
+	 * @param - [Object] 
+	 * @return - [NA]
+	 * */
+	public function set config(value : Object) : Void {
+		_config = value;
+	}
+	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Object]
+	 * */
+	public function get config() : Object {
+		return _config;
+	}
+	
+	/**
+	 * @Public
+	 * @param - [Object] 
+	 * @return - [NA]
+	 * */
+	public function set copyright(value : Object) : Void {
+		_copyright = value;
+	}
+	
+	/**
+	 * @Public
+	 * @param - [NA] 
+	 * @return - [Object]
+	 * */
+	public function get copyright() : Object {
+		return _copyright;
 	}
 	
 	/**

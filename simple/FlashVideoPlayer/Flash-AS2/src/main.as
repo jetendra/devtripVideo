@@ -28,16 +28,17 @@ var DT_videoImage;
 var DT_assetsPath;
 var _player : player;
 var url;
+var copyright : Object = new Object();
 var _data : Object = new Object();
 
 function onXMLLoadHandler(data : XML){
 	_data = XdataToE4X.convertFromXML(data).config;
-	init(_data.params);
+	init(_data);
 }
 
 function onJSONLoadHandler(data : Object){
 	_data = data;
-	init(_data.params);
+	init(_data);
 }
 
 function onflashVarsLoadHandler(){
@@ -51,11 +52,20 @@ function onflashVarsLoadHandler(){
 }
 
 function init(obj : Object){
-	devtripVo.instance.params = obj;
+	devtripVo.instance.params = (obj.params) ? obj.params : obj;
+	devtripVo.instance.config = (obj.config) ? obj.config : null;
+	devtripVo.instance.copyright = (obj.copyright) ? obj.copyright : copyright;
 	_player = new player(this.main_mc);
 }
 
+function initCopyright(){
+	copyright.info = "© 2015 devtrip video";
+	copyright.visitdata = "visit DevTrip website";
+	copyright.visiturl = "http://www.devtrip.com";
+}
+
 function initiateDataLoad(){
+	initCopyright();
 	if(url && url.indexOf(".xml") <> -1){
 		xmlLoader.instance.loadFile(url,onXMLLoadHandler);
 	} else if (url && url.indexOf(".json") <> -1){
