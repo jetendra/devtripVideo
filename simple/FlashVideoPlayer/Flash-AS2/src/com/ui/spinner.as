@@ -15,23 +15,18 @@ The end-user documentation included with the redistribution, if any, must includ
 **/
 
 import src.com.utils.base.uiBase;
-import src.com.vo.devtripVo;
-import src.com.ui.speakerButton;
-import src.com.ui.videoplayer;
 
-class src.com.ui.videocontrols extends uiBase {
+class src.com.ui.spinner extends uiBase {
 	
-	private static var _instance : videocontrols = null;
-	private static var _data : Object;
-	private static var _ui : MovieClip;
-	private var progressSlider : MovieClip;
-	private var speakerSlider : MovieClip;
-	private var spinner : MovieClip;
+	private static var _instance : spinner = null;
+	private var ele : MovieClip;
+	private	var frame : Number;
+	private var segments : Number = 12;
 	
 	/**
 	 * Constructor [Singelton]
 	 * */
-	public function videocontrols() {
+	public function spinner() {
 		if (_instance != null) throw Error('Singelton error');
 		_instance = this;
 		init();
@@ -44,8 +39,6 @@ class src.com.ui.videocontrols extends uiBase {
 	 * */
 	private function initBaseProperties() : Void {
 		super.initBaseProperties();
-		_ui = devtripVo.instance.ui.videoplayer;
-		_data = devtripVo.instance.params;
 	}
 	
 	/**
@@ -55,90 +48,39 @@ class src.com.ui.videocontrols extends uiBase {
 	 * */
 	private function loadHandler() : Void {
 		super.loadHandler();
-		addSeekSlider();
-		addVolumeSlider();
+		pauseSpinner();
 		resizeElements();
 	}
 	
 	/**
-	 * @Private 
+	 * @Public 
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
-	private function addSeekSlider() : Void {
-		this.progressSlider.seekSliderArea.onPress = function(){
-			var a : MovieClip = this._parent.seekSlider;
-			var b : Number = this._parent.seekSliderArea._width;
-			var c : Number = this._parent.seekSlider._width
-			a._x = this._xmouse;
-			videoplayer.setSteramTime( a._x / (b - c) * 100 );
-		};
-		this.progressSlider.seekSlider.onPress = function(){
-			startDrag(this,true, 0, 0 , this._parent._width - this._width, 0 );
-		};
-		this.progressSlider.seekSlider.onRelease = this.progressSlider.seekSlider.onReleaseOutside = function(){
-			var a : MovieClip = this;
-			var b : Number = this._parent.seekSliderArea._width;
-			var c : Number = this._width;
-			a.stopDrag();
-			videoplayer.setSteramTime( a._x / (b - c) * 100 );
-		};
+	public function playSpinner() : Void {
+		this._visible = true;
+		for(var i : Number = 1;i <= segments; i++) {
+			ele = this["ele" + i];
+			frame = int((i - 1) / (segments - 1) * 14) + 1;
+			ele.gotoAndPlay(ele._totalFrames - frame);
+		}
 	}
 	
 	/**
-	 * @Public
+	 * @Public 
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
-	public function setSeek(l : Number) : Void {
-		var a : MovieClip = this.progressSlider.seekSlider;
-		var b : Number = this.progressSlider.seekSliderArea._width;
-		a._x = (b - a._width) * l / 100;
+	public function pauseSpinner() : Void {
+		this._visible = false;
+		for(var i : Number = 1;i <= segments; i++) {
+			ele = this["ele" + i];
+			ele.stop();
+		}
 	}
 	
 	/**
-	 * @Private
-	 * @param - [NA] 
-	 * @return - [Void]
-	 * */
-	private function addVolumeSlider() : Void {
-		this.speakerSlider.sliderArea.onPress = function(){
-			var a : MovieClip = this._parent.slider;
-			var b : Number = this._parent.slider._width;
-			a._x = this._xmouse;
-			videoplayer.setVolume(Math.floor((a._x + b) / b * 100));
-		};
-		this.speakerSlider.slider.onPress = function(){
-			startDrag(this,true, 0, 0 , -1 * this._width, 0 );
-		};
-		this.speakerSlider.slider.onRelease = this.speakerSlider.slider.onReleaseOutside = function(){
-			var a : MovieClip = this;
-			var b : Number = this._width;
-			a.stopDrag();
-			videoplayer.setVolume(Math.floor((a._x + b) / b * 100));
-		};
-	}
-	
-	/**
-	 * @Public
-	 * @param - [NA] 
-	 * @return - [Void]
-	 * */
-	public function setPlaySpinner() : Void {
-		this.spinner.playSpinner();
-	}
-	
-	/**
-	 * @Public
-	 * @param - [NA] 
-	 * @return - [Void]
-	 * */
-	public function setPauseSpinner() : Void {
-		this.spinner.pauseSpinner();
-	}
-	
-	/**
-	 * @Private
+	 * @Private [Derived from base class]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -154,4 +96,5 @@ class src.com.ui.videocontrols extends uiBase {
 	private function resizeElements():Void{
 		
 	}
+	
 }

@@ -145,9 +145,11 @@ class src.com.ui.videoplayer extends uiBase {
 						// BUFFER EMPTY - Data is not being received quickly enough to fill the buffer. 
 						// Data flow will be interrupted until the buffer refills, at which time a NetStream.Buffer.Full 
 						// message will be sent and the stream will begin playing again.
+						_ui.videocontrols.setPlaySpinner();
 						break;
 					case "NetStream.Buffer.Full":
 						// BUFFER FULL - The buffer is full and the stream will begin playing.
+						_ui.videocontrols.setPauseSpinner();
 						break;
 					case "NetStream.Buffer.Flush":
 						//Data has finished streaming, and the remaining buffer will be emptied.
@@ -161,6 +163,7 @@ class src.com.ui.videoplayer extends uiBase {
 						clearInterval(_loadedInterval);
 						_loadedInterval = 0;
 						_ui.videocontrols.play_btn.gotoAndStop(1);
+						_ui.videocontrols.setPauseSpinner();
 						break;
 					case "NetStream.Play.StreamNotFound":
 						//The FLV passed to the play() method can't be found.
