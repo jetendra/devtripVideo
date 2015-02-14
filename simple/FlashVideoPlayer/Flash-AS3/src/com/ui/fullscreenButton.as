@@ -14,97 +14,91 @@ The end-user documentation included with the redistribution, if any, must includ
 *
 **/
 
-package src.com.utils {
+package src.com.ui{
 	
-	import flash.events.Event;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
+	import src.com.utils.base.buttonBase;
+	import flash.external.ExternalInterface;
+	import flash.events.MouseEvent;
+	import flash.display.Stage;
 	
-	import src.com.vo.devtripVo;
-	import com.adobe.serialization.json.JSON;
-	
-	public class dataLoader {
+	public class fullscreenButton extends buttonBase {
 		
-		private var _instance : dataLoader;
-		private var _dataLoadHandler_Callback : Function;
-		private var _fileExtension : String;
-		private var _loader:URLLoader;
-		private var _request:URLRequest;
+		private static var _instance : fullscreenButton = null;
 		
 		/**
 		 * Constructor [Singelton]
 		 * */
-		public function dataLoader(){
+		public function fullscreenButton() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
+			init();
 		}
 		
 		/**
 		 * @Public [access point for class]
 		 * @param - [NA] 
-		 * @return - [available instance of the class]
+		 * @return - [available instance of the class
 		 * */
-		public function get instance() : dataLoader {
+		public static function get instance() : fullscreenButton {
 			if(_instance == null){
-				_instance = new dataLoader();
+				_instance = new fullscreenButton();
 			}
 			return _instance;
 		}
 		
 		/**
-		 * @Public [initiate loading data assets]
-		 * @param - [dataObj : Object , dataLoadHandler_Callback : Function] 
-		 * @return - void
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [void]
 		 * */
-		public function loadData( dataObj : Object , dataLoadHandler_Callback : Function ) : void {
-			_dataLoadHandler_Callback = dataLoadHandler_Callback;
-			var file : String = (dataObj.url != undefined) ? dataObj.url : "data.xml" ;
-			_fileExtension = file.split(".")[1];
-			
-			switch(_fileExtension){
-				case 'json':
-				case 'xml':
-					loadDataFile(file);
-					break;
-				default :
-					loadFlashVars(dataObj);
-					break;
-			}
+		override protected function initBaseProperties() : void {
+			this.buttonMode = true;
 		}
 		
-		private function onLoaderComplete(e:Event):void
-		{
-			_loader.removeEventListener(Event.COMPLETE, onLoaderComplete);
-			
-			var _data : Object;
-			
-			switch(_fileExtension){
-				case 'json':
-					_data = JSON.decode(_loader.data);
-					break;
-				case 'xml':
-					_data = new XML(_loader.data) as Object;
-					break;
-			}
-			
-			devtripVo.instance.params = _data.params;
-			devtripVo.instance.config = _data.config;
-			devtripVo.instance.copyright = _data.copyright;
-			
-			_dataLoadHandler_Callback();
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
+		override protected function loadHandler() : void {
+			resizeElements();
 		}
 		
-		private function loadDataFile(file : String) : void {
-			_loader = new URLLoader();
-			_request = new URLRequest();
-			_request.url = file;
-			_loader.addEventListener(Event.COMPLETE, onLoaderComplete);
-			_loader.load(_request);
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
+		override protected function unloadHandler() : void {
+			
 		}
 		
-		private function loadFlashVars(dataObj : Object) : void {
-			devtripVo.instance.params = dataObj;
-			_dataLoadHandler_Callback();
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
+		private function resizeElements():void{
+			
 		}
-	}
-}
+		
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
+		override protected function MouseClickHandler(evt : MouseEvent) : void {
+			if(! ExternalInterface.available)return;			
+			switch(stage.displayState) {
+                case "normal":
+                    stage.displayState = "fullScreen";    
+                    break;
+                case "fullScreen":
+                default:
+                    stage.displayState = "normal";    
+                    break;
+            }
+			//videoplayer.instance.resizeControl(Stage.fullScreenWidth);
+		}
+	}// End of Class
+}// End of Package

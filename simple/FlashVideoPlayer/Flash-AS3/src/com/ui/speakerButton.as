@@ -13,98 +13,101 @@ Except as contained in this notice, the name(s) of the above copyright holders s
 The end-user documentation included with the redistribution, if any, must include the following acknowledgment: "This product includes software developed by The DevtripVideo Project, (http://www.devtrip.com/) and its contributors", in the same place and form as other third-party acknowledgments. Alternately, this acknowledgment may appear in the software itself, in the same form and location as other such third-party acknowledgments.
 *
 **/
-
-package src.com.utils {
-	
-	import flash.events.Event;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	
+package src.com.ui {
+	import src.com.utils.base.buttonBase;
+	/*import src.com.ui.videoplayer;
 	import src.com.vo.devtripVo;
-	import com.adobe.serialization.json.JSON;
+	import flash.external.ExternalInterface;*/
 	
-	public class dataLoader {
+	public class speakerButton extends buttonBase {
 		
-		private var _instance : dataLoader;
-		private var _dataLoadHandler_Callback : Function;
-		private var _fileExtension : String;
-		private var _loader:URLLoader;
-		private var _request:URLRequest;
+		private static var _instance : speakerButton = null;
+		//public var speakerSlider : MovieClip;
 		
 		/**
 		 * Constructor [Singelton]
 		 * */
-		public function dataLoader(){
+		public function speakerButton() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
+			//init();
 		}
 		
 		/**
 		 * @Public [access point for class]
 		 * @param - [NA] 
-		 * @return - [available instance of the class]
+		 * @return - [available instance of the class
 		 * */
-		public function get instance() : dataLoader {
+		public static function get instance() : speakerButton {
 			if(_instance == null){
-				_instance = new dataLoader();
+				_instance = new speakerButton();
 			}
 			return _instance;
 		}
 		
 		/**
-		 * @Public [initiate loading data assets]
-		 * @param - [dataObj : Object , dataLoadHandler_Callback : Function] 
-		 * @return - void
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
 		 * */
-		public function loadData( dataObj : Object , dataLoadHandler_Callback : Function ) : void {
-			_dataLoadHandler_Callback = dataLoadHandler_Callback;
-			var file : String = (dataObj.url != undefined) ? dataObj.url : "data.xml" ;
-			_fileExtension = file.split(".")[1];
-			
-			switch(_fileExtension){
-				case 'json':
-				case 'xml':
-					loadDataFile(file);
-					break;
-				default :
-					loadFlashVars(dataObj);
-					break;
-			}
-		}
+		/*private function initBaseProperties() : Void {
+			super.initBaseProperties();
+		}*/
 		
-		private function onLoaderComplete(e:Event):void
-		{
-			_loader.removeEventListener(Event.COMPLETE, onLoaderComplete);
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
+		 * */
+		/*private function loadHandler() : Void {
+			super.loadHandler();
 			
-			var _data : Object;
-			
-			switch(_fileExtension){
-				case 'json':
-					_data = JSON.decode(_loader.data);
-					break;
-				case 'xml':
-					_data = new XML(_loader.data) as Object;
-					break;
-			}
-			
-			devtripVo.instance.params = _data.params;
-			devtripVo.instance.config = _data.config;
-			devtripVo.instance.copyright = _data.copyright;
-			
-			_dataLoadHandler_Callback();
-		}
+			resizeElements();
+		}*/
 		
-		private function loadDataFile(file : String) : void {
-			_loader = new URLLoader();
-			_request = new URLRequest();
-			_request.url = file;
-			_loader.addEventListener(Event.COMPLETE, onLoaderComplete);
-			_loader.load(_request);
-		}
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
+		 * */
+		/*private function unloadHandler() : Void {
+			super.unloadHandler();
+		}*/
 		
-		private function loadFlashVars(dataObj : Object) : void {
-			devtripVo.instance.params = dataObj;
-			_dataLoadHandler_Callback();
-		}
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
+		 * */
+		/*private function resizeElements():Void{
+			
+		}*/
+		
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
+		 * */
+		/*private function onPressHandler() : Void {
+			super.onPressHandler();
+		}*/
+		
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
+		 * */
+		/*private function onReleaseHandler() : Void {
+			super.onReleaseHandler();
+		}*/
+		
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [NA] 
+		 * @return - [Void]
+		 * */
+		/*private function onReleaseOutsideHandler() : Void {
+			super.onReleaseOutsideHandler();
+		}*/
 	}
 }

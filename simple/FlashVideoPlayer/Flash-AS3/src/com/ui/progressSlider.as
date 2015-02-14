@@ -14,24 +14,26 @@ The end-user documentation included with the redistribution, if any, must includ
 *
 **/
 
-package src.com.ui {
+package src.com.ui{
 	
-	import src.com.utils.base.uiBase;
-	import src.com.vo.devtripVo;
-	import src.com.ui.videocontrols;
-	
-	public class videoplayer extends uiBase {
+	import flash.display.MovieClip;
+	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
+	import flash.display.Stage;
+
+	public class progressSlider extends MovieClip {
 		
-		private static var _instance : videoplayer = null;
-		private var _videocontrols : videocontrols;
+		private static var _instance : progressSlider = null;
+		
+		public var seekSlider : MovieClip;
 		
 		/**
 		 * Constructor [Singelton]
 		 * */
-		public function videoplayer() {
+		public function progressSlider() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
-			init();
+			initBaseProperties();//init();
 		}
 		
 		/**
@@ -39,72 +41,59 @@ package src.com.ui {
 		 * @param - [NA] 
 		 * @return - [available instance of the class
 		 * */
-		public static function get instance() : videoplayer {
+		public static function get instance() : progressSlider {
 			if(_instance == null){
-				_instance = new videoplayer();
+				_instance = new progressSlider();
 			}
 			return _instance;
 		}
 		
 		/**
-		 * @Derived from base
-		 * @param - [NA] 
-		 * @return - [available instance of the class
-		 * */
-		override protected function initBaseProperties() : void {
-			attachVideoControl();
-		}
-		
-		override protected function loadHandler() : void {
-			resizeElements();
-			loadPoster();
-			setVideo();
-		}
-		
-		/**
-		 * @private
-		 * @param - [NA] 
-		 * @return - [available instance of the class
-		 * */
-		private function attachVideoControl() : void {
-			_videocontrols = videocontrols.instance;
-			_videocontrols.y = devtripVo.instance.params.height;
-			addElement(_videocontrols);
-		}
-		
-		/**
-		 * @Private 
+		 * @Private [Derived from base class]
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
-		private function resizeElements():void{
-			/*var _resizeFactor : Object = devtripVo.instance.resizeFactor;
-			_ui.video._xscale =  _resizeFactor.widthRatio;
-			_ui.video._yscale = _resizeFactor.heightRatio;
-			_ui.videocontrols._xscale =  _resizeFactor.widthRatio;
-			_ui.videocontrols._yscale =  _resizeFactor.heightRatio;
-			_ui.poster._xscale =  _resizeFactor.widthRatio;
-			_ui.poster._yscale =  _resizeFactor.heightRatio;*/
+		private function initBaseProperties() : void {
+			addEvent();
 		}
 		
-		/**
-		 * @Private 
-		 * @param - [NA] 
-		 * @return - [void]
-		 * */
-		private function loadPoster() : void {
-			//this.poster.loadMovie( _data.assetsPath +"/"+_data.videoImage );
-			//_ui.poster.loadedmovie = true;
-			//addElement(_ui.poster);
+		private function addEvent() : void {
+			seekSlider.buttonMode = true;
+			seekSliderArea.buttonMode = true;
+			seekSlider.addEventListener(MouseEvent.MOUSE_DOWN, MouseDownHandler);
+			seekSlider.addEventListener(MouseEvent.MOUSE_UP, MouseUpHandler);
+			seekSlider.addEventListener(MouseEvent.MOUSE_MOVE, MouseMoveHandler);
+			seekSliderArea.addEventListener(MouseEvent.CLICK, MouseClickHandler);
 		}
 		
-		/**
-		 * @Public
-		 * @param - [NA] 
-		 * @return - [void]
-		 * */
-		public function hidePoster() : void {
-			this.poster.visible = false;
+		private function removeEvent() : void {
+			seekSlider.removeEventListener(MouseEvent.MOUSE_DOWN, MouseDownHandler);
+			seekSlider.removeEventListener(MouseEvent.MOUSE_UP, MouseUpHandler);
+			seekSlider.removeEventListener(MouseEvent.MOUSE_MOVE, MouseMoveHandler);
+			seekSliderArea.removeEventListener(MouseEvent.CLICK, MouseClickHandler);
+		}
+		
+		private function MouseDownHandler(evt : MouseEvent) : void {
+			var rect:Rectangle = new Rectangle(0,0,this.seekSliderArea.width - seekSlider.width,0);
+			seekSlider.startDrag(false , rect);
+			stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
+		}
+		
+		private function MouseUpHandler(evt : MouseEvent) : void {
+			seekSlider.stopDrag();
+		}
+		
+		private function stageMouseUpHandler(evt : MouseEvent) : void {
+			stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
+			seekSlider.stopDrag();
+		}
+		
+		private function MouseMoveHandler(evt : MouseEvent) : void {
+			evt.updateAfterEvent();
+		}
+		
+		private function MouseClickHandler(evt : MouseEvent) : void {
+			seekSlider.x = seekSliderArea.mouseX;
 		}
 		
 		/**
@@ -112,9 +101,8 @@ package src.com.ui {
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
-		private function setVideo():void {
-			trace("here in setting video player");
+		private function resizeElements():void{
+			
 		}
-		
 	}
 }
