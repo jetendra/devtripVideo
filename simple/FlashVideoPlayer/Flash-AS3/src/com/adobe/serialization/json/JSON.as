@@ -1,4 +1,4 @@
-/*
+﻿/*
   Copyright (c) 2008, Adobe Systems Incorporated
   All rights reserved.
 
@@ -48,6 +48,9 @@ package com.adobe.serialization.json
 	public class JSON
 	{
 		/**
+		 * Updated the encode() to stringify()
+		 * To Have support for both CS5.5 and CS6
+		 *
 		 * Encodes a object into a JSON string.
 		 *
 		 * @param o The object to create a JSON string for
@@ -56,12 +59,15 @@ package com.adobe.serialization.json
 		 * @playerversion Flash 9.0
 		 * @tiptext
 		 */
-		public static function encode( o:Object ):String
+		public static function stringify( o:Object ):String
 		{	
 			return new JSONEncoder( o ).getString();
 		}
 		
 		/**
+		 * Updated the decode() to parse()
+		 * To Have support for both CS5.5 and CS6
+		 *
 		 * Decodes a JSON string into a native object.
 		 * 
 		 * @param s The JSON string representing the object
@@ -76,7 +82,7 @@ package com.adobe.serialization.json
 		 * @playerversion Flash 9.0
 		 * @tiptext
 		 */
-		public static function decode( s:String, strict:Boolean = true ):*
+		public static function parse( s:String, strict:Boolean = true ):*
 		{	
 			return new JSONDecoder( s, strict ).getValue();	
 		}

@@ -21,7 +21,7 @@ package src.com.utils {
 	import flash.net.URLRequest;
 	
 	import src.com.vo.devtripVo;
-	import com.adobe.serialization.json.JSON;
+	//import com.adobe.serialization.json.JSON;
 	
 	public class dataLoader {
 		
@@ -72,6 +72,11 @@ package src.com.utils {
 			}
 		}
 		
+		/**
+		 * @Private
+		 * @param - [Event] 
+		 * @return - [void]
+		 * */
 		private function onLoaderComplete(e:Event):void
 		{
 			_loader.removeEventListener(Event.COMPLETE, onLoaderComplete);
@@ -80,7 +85,7 @@ package src.com.utils {
 			
 			switch(_fileExtension){
 				case 'json':
-					_data = JSON.decode(_loader.data);
+					_data = JSON.parse(_loader.data);
 					break;
 				case 'xml':
 					_data = new XML(_loader.data) as Object;
@@ -94,6 +99,11 @@ package src.com.utils {
 			_dataLoadHandler_Callback();
 		}
 		
+		/**
+		 * @Private
+		 * @param - [file url string] 
+		 * @return - [void]
+		 * */
 		private function loadDataFile(file : String) : void {
 			_loader = new URLLoader();
 			_request = new URLRequest();
@@ -102,6 +112,11 @@ package src.com.utils {
 			_loader.load(_request);
 		}
 		
+		/**
+		 * @Private
+		 * @param - [Object] 
+		 * @return - [void]
+		 * */
 		private function loadFlashVars(dataObj : Object) : void {
 			devtripVo.instance.params = dataObj;
 			_dataLoadHandler_Callback();

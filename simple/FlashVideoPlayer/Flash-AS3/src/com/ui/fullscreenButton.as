@@ -37,7 +37,7 @@ package src.com.ui{
 		/**
 		 * @Public [access point for class]
 		 * @param - [NA] 
-		 * @return - [available instance of the class
+		 * @return - [available instance of the class]
 		 * */
 		public static function get instance() : fullscreenButton {
 			if(_instance == null){

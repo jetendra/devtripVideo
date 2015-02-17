@@ -21,7 +21,7 @@ package src.com.ui{
 	public class spinner extends uiBase {
 		
 		private static var _instance : spinner = null;
-		private var ele : MovieClip;
+		private var ele : *;
 		private	var frame : Number;
 		private var segments : Number = 12;
 		

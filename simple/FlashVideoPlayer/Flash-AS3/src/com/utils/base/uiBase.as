@@ -113,7 +113,7 @@ package src.com.utils.base {
 		 * Removed loaded / attached movie clip from the referenced symbol.
 		 * */
 		private function removeElement() : void {
-			for (var i in _elementArr){
+			for (var i  : String in _elementArr){
 				removeChild(_elementArr[i]);
 			}
 		}

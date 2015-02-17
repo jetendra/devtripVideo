@@ -13,7 +13,7 @@ Except as contained in this notice, the name(s) of the above copyright holders s
 The end-user documentation included with the redistribution, if any, must include the following acknowledgment: "This product includes software developed by The DevtripVideo Project, (http://www.devtrip.com/) and its contributors", in the same place and form as other third-party acknowledgments. Alternately, this acknowledgment may appear in the software itself, in the same form and location as other such third-party acknowledgments.
 *
 **/
-package src.com.vo {
+package src.com.vo{
 
 	public class devtripVo {
 		
@@ -21,7 +21,6 @@ package src.com.vo {
 		private static var _params : Object = new Object();
 		private static var _config : Object = new Object();
 		private static var _copyright : Object = new Object();
-		//private static var _ui : MovieClip = null;
 		private static var _resizeFactor : Number = 1;
 		private static var _infoObject : Object;
 		private static var _isPlaying : Boolean;
@@ -100,24 +99,6 @@ package src.com.vo {
 		public function get copyright() : Object {
 			return _copyright;
 		}
-		
-		/**
-		 * @Public
-		 * @param - [MovieClip] 
-		 * @return - [NA]
-		 * */
-		/*public function set ui(value : MovieClip) : void {
-			_ui = value;
-		}*/
-		
-		/**
-		 * @Public
-		 * @param - [NA] 
-		 * @return - [MovieClip]
-		 * */
-		/*public function get ui() : MovieClip {
-			return _ui;
-		}*/
 		
 		/**
 		 * @Public

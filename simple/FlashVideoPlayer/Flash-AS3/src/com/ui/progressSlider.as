@@ -20,12 +20,15 @@ package src.com.ui{
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.display.Stage;
+	import src.com.ui.videoplayer;
 
 	public class progressSlider extends MovieClip {
 		
 		private static var _instance : progressSlider = null;
 		
 		public var seekSlider : MovieClip;
+		public var seekSliderArea : MovieClip;
+		private var isDragging : Boolean = false;
 		
 		/**
 		 * Constructor [Singelton]
@@ -49,7 +52,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private [Derived from base class]
+		 * @Private
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -57,6 +60,11 @@ package src.com.ui{
 			addEvent();
 		}
 		
+		/**
+		 * @Private
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
 		private function addEvent() : void {
 			seekSlider.buttonMode = true;
 			seekSliderArea.buttonMode = true;
@@ -66,6 +74,11 @@ package src.com.ui{
 			seekSliderArea.addEventListener(MouseEvent.CLICK, MouseClickHandler);
 		}
 		
+		/**
+		 * @Private
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
 		private function removeEvent() : void {
 			seekSlider.removeEventListener(MouseEvent.MOUSE_DOWN, MouseDownHandler);
 			seekSlider.removeEventListener(MouseEvent.MOUSE_UP, MouseUpHandler);
@@ -73,27 +86,82 @@ package src.com.ui{
 			seekSliderArea.removeEventListener(MouseEvent.CLICK, MouseClickHandler);
 		}
 		
+		/**
+		 * @Private
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
 		private function MouseDownHandler(evt : MouseEvent) : void {
 			var rect:Rectangle = new Rectangle(0,0,this.seekSliderArea.width - seekSlider.width,0);
 			seekSlider.startDrag(false , rect);
 			stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
+			isDragging = true;
 		}
 		
+		/**
+		 * @Private
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
 		private function MouseUpHandler(evt : MouseEvent) : void {
 			seekSlider.stopDrag();
+			setStream();
+			isDragging = false;
 		}
 		
+		/**
+		 * @Private
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
 		private function stageMouseUpHandler(evt : MouseEvent) : void {
 			stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
 			seekSlider.stopDrag();
+			setStream();
+			isDragging = false;
 		}
 		
+		/**
+		 * @Private
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
 		private function MouseMoveHandler(evt : MouseEvent) : void {
 			evt.updateAfterEvent();
 		}
 		
+		/**
+		 * @Private
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
 		private function MouseClickHandler(evt : MouseEvent) : void {
-			seekSlider.x = seekSliderArea.mouseX;
+			this.seekSlider.x = this.mouseX;
+			setStream();
+		}
+		
+		/**
+		 * @Private
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
+		private function setStream() : void {
+			var a : MovieClip = this.seekSlider;
+			var b : Number = this.seekSliderArea.width;
+			var c : Number = this.seekSlider.width;
+			videoplayer.instance.setSteramTime( a.x / (b - c) * 100 );
+		}
+		
+		/**
+		 * @Public
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
+		public function setSeek(l:Number) : void {
+			if(isDragging)return;
+			var a : MovieClip = this.seekSlider;
+			var b : Number = this.seekSliderArea.width;
+			a.x = (b - a.width) * l / 100;
 		}
 		
 		/**

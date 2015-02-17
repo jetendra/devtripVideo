@@ -13,7 +13,9 @@ Except as contained in this notice, the name(s) of the above copyright holders s
 The end-user documentation included with the redistribution, if any, must include the following acknowledgment: "This product includes software developed by The DevtripVideo Project, (http://www.devtrip.com/) and its contributors", in the same place and form as other third-party acknowledgments. Alternately, this acknowledgment may appear in the software itself, in the same form and location as other such third-party acknowledgments.
 *
 **/
-package src.com.ui{
+
+package src.com.ui {
+
 	import src.com.utils.base.buttonBase;
 	import src.com.ui.videoplayer;
 	import src.com.vo.devtripVo;
@@ -44,18 +46,23 @@ package src.com.ui{
 			return _instance;
 		}
 		
+		/**
+		 * @Private [Derived from base class]
+		 * @param - [MouseEvent] 
+		 * @return - [void]
+		 * */
 		override protected function MouseClickHandler(evt : MouseEvent) : void {
-			//videoplayer.instance.hidePoster();
+			videoplayer.instance.hidePoster();
 			
 			if(this.currentFrame == 1)
 				setState("pause");
 			else
 				setState("play");
 			
-			/*if(devtripVo.instance.isPlaying)
-				videoplayer.instance.pauseVideo();
+			if(devtripVo.instance.isPlaying)
+				videoplayer.instance.pauseVideo(this.currentLabel);
 			else
-				videoplayer.instance.playVideo();*/
+				videoplayer.instance.playVideo();
 		}
 				
 		/**
@@ -69,15 +76,6 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function unloadHandler() : Void {
-			super.unloadHandler();
-		}*/
-		
-		/**
 		 * @Private 
 		 * @param - [NA] 
 		 * @return - [Void]
@@ -85,43 +83,5 @@ package src.com.ui{
 		private function resizeElements():void{
 			
 		}
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function onPressHandler() : Void {
-			super.onPressHandler();
-			videoplayer.instance.hidePoster();
-			
-			if(this._currentframe == 1)
-				setState("pause");
-			else
-				setState("play");
-			
-			if(devtripVo.instance.isPlaying)
-				videoplayer.instance.pauseVideo();
-			else
-				videoplayer.instance.playVideo();
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function onReleaseHandler() : Void {
-			super.onReleaseHandler();
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function onReleaseOutsideHandler() : Void {
-			super.onReleaseOutsideHandler();
-		}*/
 	}
 }

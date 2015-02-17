@@ -14,12 +14,11 @@ The end-user documentation included with the redistribution, if any, must includ
 *
 **/
 
-package com {
+package src.com{
 	
-	import flash.display.DisplayObject;
 	import flash.display.LoaderInfo;
 	import flash.ui.ContextMenu;
-    import flash.ui.ContextMenuItem;
+	import flash.ui.ContextMenuItem;
 	import flash.events.ContextMenuEvent;
 	import flash.events.Event;
 	import flash.net.URLRequest;
