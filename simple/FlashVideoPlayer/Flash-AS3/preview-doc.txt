@@ -1,0 +1,4 @@
+Production URL Documentation - https://cdn.rawgit.com/kavindraD/devtripVideo/master/simple/FlashVideoPlayer/Flash-AS3/doc/index.html
+
+
+Production URL Preview - https://cdn.rawgit.com/kavindraD/devtripVideo/master/simple/FlashVideoPlayer/Flash-AS3/build/web/player.html
