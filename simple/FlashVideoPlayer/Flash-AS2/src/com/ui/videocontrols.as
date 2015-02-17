@@ -27,6 +27,7 @@ class src.com.ui.videocontrols extends uiBase {
 	private var progressSlider : MovieClip;
 	private var speakerSlider : MovieClip;
 	private var spinner : MovieClip;
+	private var isDragging : Boolean = false;
 	
 	/**
 	 * Constructor [Singelton]
@@ -69,19 +70,23 @@ class src.com.ui.videocontrols extends uiBase {
 		this.progressSlider.seekSliderArea.onPress = function(){
 			var a : MovieClip = this._parent.seekSlider;
 			var b : Number = this._parent.seekSliderArea._width;
-			var c : Number = this._parent.seekSlider._width
+			var c : Number = this._parent.seekSlider._width;
 			a._x = this._xmouse;
 			videoplayer.setSteramTime( a._x / (b - c) * 100 );
 		};
 		this.progressSlider.seekSlider.onPress = function(){
+			_instance.isDragging = true;
 			startDrag(this,true, 0, 0 , this._parent._width - this._width, 0 );
+			
 		};
 		this.progressSlider.seekSlider.onRelease = this.progressSlider.seekSlider.onReleaseOutside = function(){
+			_instance.isDragging = false;
 			var a : MovieClip = this;
 			var b : Number = this._parent.seekSliderArea._width;
 			var c : Number = this._width;
 			a.stopDrag();
 			videoplayer.setSteramTime( a._x / (b - c) * 100 );
+			
 		};
 	}
 	
@@ -91,6 +96,7 @@ class src.com.ui.videocontrols extends uiBase {
 	 * @return - [Void]
 	 * */
 	public function setSeek(l : Number) : Void {
+		if(_instance.isDragging)return;
 		var a : MovieClip = this.progressSlider.seekSlider;
 		var b : Number = this.progressSlider.seekSliderArea._width;
 		a._x = (b - a._width) * l / 100;
