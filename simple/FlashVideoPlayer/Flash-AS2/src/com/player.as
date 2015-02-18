@@ -41,7 +41,7 @@ class src.com.player extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [attach video ui to display stage]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -52,7 +52,7 @@ class src.com.player extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [configure context menue of flash player]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -67,7 +67,7 @@ class src.com.player extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [dead click handler]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -76,7 +76,7 @@ class src.com.player extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [navigate to site url]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */

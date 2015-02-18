@@ -62,7 +62,7 @@ class src.com.ui.videocontrols extends uiBase {
 	}
 	
 	/**
-	 * @Private 
+	 * @Private [add seek/progress slider and its controls]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -72,6 +72,8 @@ class src.com.ui.videocontrols extends uiBase {
 			var b : Number = this._parent.seekSliderArea._width;
 			var c : Number = this._parent.seekSlider._width;
 			a._x = this._xmouse;
+			if( a._x + c > b ) a._x -= c ;
+			if(a.x < 0)a.x = 0;
 			videoplayer.setSteramTime( a._x / (b - c) * 100 );
 		};
 		this.progressSlider.seekSlider.onPress = function(){
@@ -85,14 +87,15 @@ class src.com.ui.videocontrols extends uiBase {
 			var b : Number = this._parent.seekSliderArea._width;
 			var c : Number = this._width;
 			a.stopDrag();
+			//if( a._x > b - c ) a._x = b - c ;
 			videoplayer.setSteramTime( a._x / (b - c) * 100 );
 			
 		};
 	}
 	
 	/**
-	 * @Public
-	 * @param - [NA] 
+	 * @Public [set seek slider at provided point]
+	 * @param - [Number] 
 	 * @return - [Void]
 	 * */
 	public function setSeek(l : Number) : Void {
@@ -103,7 +106,7 @@ class src.com.ui.videocontrols extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [add volume slider and its handlers]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -126,7 +129,7 @@ class src.com.ui.videocontrols extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [set spinner playing on demand]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -135,7 +138,7 @@ class src.com.ui.videocontrols extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [pause spinner on demand]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -144,7 +147,7 @@ class src.com.ui.videocontrols extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [unload element handler]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -153,7 +156,7 @@ class src.com.ui.videocontrols extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [resize element handler of ui elements]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */

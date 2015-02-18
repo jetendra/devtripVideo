@@ -21,7 +21,7 @@ class src.com.utils.base.buttonBase extends MovieClip implements buttonInterface
 	private var _elementArr : Array = [];
 	
 	/**
-	 * Constructor
+	 * Constructor : buttonBase
 	 * */
 	public function buttonBase() {
 		
@@ -224,7 +224,7 @@ class src.com.utils.base.buttonBase extends MovieClip implements buttonInterface
 	}
 	
 	/**
-	 * @Private 
+	 * @Private [remove available references of UI]
 	 * @param - [NA] 
 	 * @return - [NA]
 	 * Removed loaded / attached movie clip from the referenced symbol.

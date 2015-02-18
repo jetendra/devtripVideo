@@ -32,7 +32,7 @@ class src.com.utils.xml.xmlLoader{
 	}
 	
 	/**
-	 * @public
+	 * @public [load data file]
 	 * @param - [String - file name url, Function - callback loaded event/function] 
 	 * @return - [Nothing]
 	 * */
@@ -58,7 +58,7 @@ class src.com.utils.xml.xmlLoader{
 	}
 	
 	/**
-	 * @private
+	 * @private [error event handler of file reference]
 	 * @param - [String - fileRef in string] 
 	 * @return - [Void]
 	 * */
@@ -67,7 +67,7 @@ class src.com.utils.xml.xmlLoader{
 	}
 	
 	/**
-	 * @public
+	 * @public [load text data file]
 	 * @param - [String - file name url, Function - callback loaded event/function] 
 	 * @return - [Void]
 	 * */

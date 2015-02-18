@@ -85,7 +85,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Private 
+	 * @Private [resize element handler of UI elements]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -100,7 +100,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Private 
+	 * @Private [load poster handler]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -111,7 +111,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [Hide poster on demand]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -120,7 +120,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [set video parameters and stream]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -187,7 +187,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [play video on demand]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -198,7 +198,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [pause video on demand]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -214,7 +214,7 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [set volume level on demand]
 	 * @param - [Number] 
 	 * @return - [Void]
 	 * */
@@ -224,16 +224,16 @@ class src.com.ui.videoplayer extends uiBase {
 	}
 	
 	/**
-	 * @Public
+	 * @Public [set stream point on demand]
 	 * @param - [Number] 
 	 * @return - [Void]
 	 * */
 	public static function setSteramTime(l:Number) : Void {
-		_netStrm.seek(Math.floor(l / 100 * devtripVo.instance.infoObject.duration));
+		if(devtripVo.instance.isPlaying && _netStrm)_netStrm.seek(Math.floor(l / 100 * devtripVo.instance.infoObject.duration));
 	}
 	
 	/**
-	 * @Private
+	 * @Private [check bytes loaded and update seek on progress]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */

@@ -53,7 +53,7 @@ class src.com.ui.spinner extends uiBase {
 	}
 	
 	/**
-	 * @Public 
+	 * @Public [play spinner elements]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -67,7 +67,7 @@ class src.com.ui.spinner extends uiBase {
 	}
 	
 	/**
-	 * @Public 
+	 * @Public [pause spinner elements]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */
@@ -89,7 +89,7 @@ class src.com.ui.spinner extends uiBase {
 	}
 	
 	/**
-	 * @Private
+	 * @Private [resize UI elements]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */

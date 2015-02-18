@@ -19,7 +19,7 @@ class src.com.utils.xml.XdataToE4X {
 	private static var obj : Object = null;
 	
 	/**
-	 * @public
+	 * @public convert From XML
 	 * @param - [XML - Xml onject] 
 	 * @return - [Object]
 	 * */
@@ -33,7 +33,7 @@ class src.com.utils.xml.XdataToE4X {
 	}
 	
 	/**
-	 * @private
+	 * @private [add XML Children]
 	 * @param - [XMLNode - xmlNode] 
 	 * @return - [Object]
 	 * */

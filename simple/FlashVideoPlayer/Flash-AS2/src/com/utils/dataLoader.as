@@ -33,7 +33,7 @@ class src.com.utils.dataLoader{
 	}
 	
 	/**
-	 * @public
+	 * @public [load data file]
 	 * @param - [String - file name url, Function - callback loaded event/function] 
 	 * @return - [Void]
 	 * */
@@ -61,7 +61,7 @@ class src.com.utils.dataLoader{
 	}
 	
 	/**
-	 * @private
+	 * @private [provide the JSON object]
 	 * @param - [String - data source] 
 	 * @return - [Object]
 	 * */
@@ -70,7 +70,7 @@ class src.com.utils.dataLoader{
 	}
 	
 	/**
-	 * @private
+	 * @private [error event for data load handler]
 	 * @param - [String - file reference] 
 	 * @return - [Void]
 	 * */

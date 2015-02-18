@@ -60,7 +60,7 @@ class src.com.ui.playButton extends buttonBase {
 	}
 	
 	/**
-	 * @Private 
+	 * @Private [resize elements handler]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * */

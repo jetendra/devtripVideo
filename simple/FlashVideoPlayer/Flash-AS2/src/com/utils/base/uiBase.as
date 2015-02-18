@@ -80,7 +80,7 @@ class src.com.utils.base.uiBase extends MovieClip implements uiInterface {
 	}
 	
 	/**
-	 * @Private 
+	 * @Private [removeElement available elements]
 	 * @param - [NA] 
 	 * @return - [Void]
 	 * Removed loaded / attached movie clip from the referenced symbol.
