@@ -45,69 +45,6 @@ package src.com.ui {
 			return _instance;
 		}
 		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function initBaseProperties() : Void {
-			super.initBaseProperties();
-		}*/
 		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function loadHandler() : Void {
-			super.loadHandler();
-			
-			resizeElements();
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function unloadHandler() : Void {
-			super.unloadHandler();
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function resizeElements():Void{
-			
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function onPressHandler() : Void {
-			super.onPressHandler();
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function onReleaseHandler() : Void {
-			super.onReleaseHandler();
-		}*/
-		
-		/**
-		 * @Private [Derived from base class]
-		 * @param - [NA] 
-		 * @return - [Void]
-		 * */
-		/*private function onReleaseOutsideHandler() : Void {
-			super.onReleaseOutsideHandler();
-		}*/
 	}
 }

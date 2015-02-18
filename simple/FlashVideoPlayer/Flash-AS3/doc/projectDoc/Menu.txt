@@ -7,7 +7,7 @@ Format: 1.52
 
 # You can add a footer to your documentation like this:
 # Footer: [text]
-# If you want to add a copyright notice, this would be the place to do it.
+# © www.devtrip.com 2012-15 
 
 # You can add a timestamp to your documentation like one of these:
 # Timestamp: Generated on month day, year
@@ -82,9 +82,9 @@ Group: Utils  {
 
 Group: Index  {
 
+   Index: Everything
    Class Index: Classes
    Constant Index: Constants
-   Index: Everything
    Function Index: Functions
    Interface Index: Interfaces
    Property Index: Properties

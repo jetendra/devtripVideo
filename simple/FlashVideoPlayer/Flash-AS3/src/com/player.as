@@ -35,7 +35,8 @@ package src.com{
 		private var _videoplayer : videoplayer;
 		
 		/**
-		 * Constructor
+		 * Constructor: player
+		 * @Constructor Initializes the object.
 		 * */
 		public function player() {
 			loadData();
@@ -72,7 +73,7 @@ package src.com{
 		}
 		
 		/**
-		 * @Private
+		 * @Private [ attach video ui to stage]
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -82,7 +83,7 @@ package src.com{
 		}
 		
 		/**
-		 * @Private
+		 * @Private [ configure context menu items of flash player]
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -98,7 +99,7 @@ package src.com{
 		}
 		
 		/**
-		 * @Private
+		 * @Private [ context menu navigation handler ]
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */

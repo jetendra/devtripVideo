@@ -26,8 +26,9 @@ package src.com.utils.base {
 		private var _elementArr : Array = [];
 		
 		/**
-		 * Constructor
-		 * */
+		 * Constructor : buttonBase
+		 * @Constructor Initializes the object.
+		 * */ 
 		public function buttonBase() {
 			//this.addEventListener(Event.ADDED_TO_STAGE, AddedHandler);
 		}

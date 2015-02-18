@@ -25,6 +25,7 @@ package src.com.ui {
 	import flash.net.NetStream;
 	import flash.events.AsyncErrorEvent;
 	import flash.media.Video;
+	import flash.media.SoundTransform;
 	import flash.utils.*;
 
 	
@@ -38,9 +39,11 @@ package src.com.ui {
 		public var video : Video;
 		
 		private var _loadedInterval:uint;
+		private var _videoVolumeTransform : SoundTransform;
 		
 		/**
-		 * Constructor [Singelton]
+		 * Constructor: videoplayer
+		 * @Constructor Initializes the object.
 		 * */
 		public function videoplayer() {
 			if (_instance != null) throw Error('Singelton error');
@@ -81,7 +84,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @private
+		 * @private attach Video Controls with player
 		 * @param - [NA] 
 		 * @return - [available instance of the class
 		 * */
@@ -92,7 +95,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private resize element handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -107,7 +110,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private load poster handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -118,7 +121,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Public
+		 * @Public hide poster handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -127,7 +130,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private set video stream and connection
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -141,7 +144,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private connection status handler
 		 * @param - [NetStatusEvent] 
 		 * @return - [void]
 		 * */
@@ -173,7 +176,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private security error handler
 		 * @param - [SecurityErrorEvent] 
 		 * @return - [void]
 		 * */
@@ -182,13 +185,14 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private connect stream
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
 		private function connectStream() : void {
 			if (_netStrm)_netStrm.close();
-            _netStrm = new NetStream(_conVideo);
+			_videoVolumeTransform = new SoundTransform();
+			_netStrm = new NetStream(_conVideo);
             _client = new Object();
             _client.onMetaData = metaDataHandler;
             _netStrm.client = _client;
@@ -198,7 +202,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private stream status handler
 		 * @param - [NetStatusEvent] 
 		 * @return - [void]
 		 * */
@@ -336,7 +340,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private asynch error handler
 		 * @param - [AsyncErrorEvent] 
 		 * @return - [Void]
 		 * */
@@ -345,7 +349,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private meta data handler
 		 * @param - [Object] 
 		 * @return - [Void]
 		 * */
@@ -357,7 +361,7 @@ package src.com.ui {
         }
 		
 		/**
-		 * @Public
+		 * @Public play video 
 		 * @param - [NA] 
 		 * @return - [Void]
 		 * */
@@ -372,7 +376,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Public
+		 * @Public pause video
 		 * @param - [NA] 
 		 * @return - [Void]
 		 * */
@@ -391,17 +395,22 @@ package src.com.ui {
 			}
 		}
 		
+		public function setVolume(l:Number) : void {
+			_videoVolumeTransform.volume = Math.floor(l);
+			if(_netStrm)_netStrm.soundTransform = _videoVolumeTransform;
+		}
+		
 		/**
-		 * @Public
+		 * @Public set stream time
 		 * @param - [Number] 
 		 * @return - [Void]
 		 * */
 		public function setSteramTime(l:Number) : void {
-			_netStrm.seek(l / 100 * devtripVo.instance.infoObject.duration);
+			if(devtripVo.instance.isPlaying && _netStrm)_netStrm.seek(l / 100 * devtripVo.instance.infoObject.duration);
 		}
 		
 		/**
-		 * @Private
+		 * @Private check bytes loaded and set seek slider
 		 * @param - [NA] 
 		 * @return - [Void]
 		 * */

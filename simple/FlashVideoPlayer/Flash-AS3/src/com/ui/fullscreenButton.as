@@ -26,8 +26,9 @@ package src.com.ui{
 		private static var _instance : fullscreenButton = null;
 		
 		/**
-		 * Constructor [Singelton]
-		 * */
+		 * Constructor : progressSlider
+		 * @Constructor Initializes the object.
+		 * */ 
 		public function fullscreenButton() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;

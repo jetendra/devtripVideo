@@ -26,8 +26,9 @@ package src.com.ui{
 		private var segments : Number = 12;
 		
 		/**
-		 * Constructor [Singelton]
-		 * */
+		 * Constructor : spinner
+		 * @Constructor Initializes the object.
+		 * */ 
 		public function spinner() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
@@ -66,7 +67,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Public 
+		 * @Public play spinner handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -80,7 +81,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Public 
+		 * @Public pause spinner handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -102,7 +103,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private resize element handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */

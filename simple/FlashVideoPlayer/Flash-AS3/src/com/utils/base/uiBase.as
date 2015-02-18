@@ -25,7 +25,8 @@ package src.com.utils.base {
 		private var _elementArr : Array = [];
 		
 		/**
-		 * Constructor
+		 * Constructor : uiBase
+		 * @Constructor Initializes the object.
 		 * */ 
 		public function uiBase() {
 			
@@ -64,6 +65,11 @@ package src.com.utils.base {
 			removeElement();
 		}
 		
+		/**
+		 * @loadData() definition
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
 		protected function loadData() : void {
 			
 		}
@@ -107,7 +113,7 @@ package src.com.utils.base {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private removeElement handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * Removed loaded / attached movie clip from the referenced symbol.

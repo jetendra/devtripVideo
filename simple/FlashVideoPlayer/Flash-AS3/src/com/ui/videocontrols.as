@@ -41,8 +41,9 @@ package src.com.ui {
 		public var _speakerSlider : MovieClip;
 		
 		/**
-		 * Constructor [Singelton]
-		 * */
+		 * Constructor : videocontrols
+		 * @Constructor Initializes the object.
+		 * */ 
 		public function videocontrols() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
@@ -72,7 +73,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private add Volume Slider
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -81,7 +82,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private addEvent for volume slider
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -94,7 +95,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private remove event from volume slider
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -106,7 +107,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private mouse move handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -117,7 +118,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private mouse up handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -126,7 +127,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private release out side implementation
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -136,7 +137,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private mouse move handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -145,7 +146,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private mouse click handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -154,7 +155,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Public
+		 * @Public set play spinner
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -163,7 +164,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Public
+		 * @Public set pause spinner
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -172,7 +173,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private
+		 * @Private resize elements
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */

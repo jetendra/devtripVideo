@@ -31,8 +31,9 @@ package src.com.ui{
 		private var isDragging : Boolean = false;
 		
 		/**
-		 * Constructor [Singelton]
-		 * */
+		 * Constructor : progressSlider
+		 * @Constructor Initializes the object.
+		 * */ 
 		public function progressSlider() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
@@ -52,7 +53,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private init base properties
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -61,7 +62,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private add events for seek slider
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -75,7 +76,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private remove events from seek slider
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -87,7 +88,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private mouse down handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -99,7 +100,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private mouse up handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -110,7 +111,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private release outside implementation
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -122,7 +123,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private mouse move handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -131,17 +132,22 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private mouse click handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
 		private function MouseClickHandler(evt : MouseEvent) : void {
-			this.seekSlider.x = this.mouseX;
+			var a : MovieClip = this.seekSlider;
+			var b : Number = this.seekSliderArea.width;
+			var c : Number = this.seekSlider.width;
+			a.x = this.mouseX;
+			if(a.x + c > b)a.x -= c;
+			if(a.x < 0)a.x = 0;
 			setStream();
 		}
 		
 		/**
-		 * @Private
+		 * @Private set stream handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */
@@ -153,7 +159,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Public
+		 * @Public set seek handler
 		 * @param - [MouseEvent] 
 		 * @return - [void]
 		 * */
@@ -165,7 +171,7 @@ package src.com.ui{
 		}
 		
 		/**
-		 * @Private
+		 * @Private resize element handler
 		 * @param - [NA] 
 		 * @return - [void]
 		 * */

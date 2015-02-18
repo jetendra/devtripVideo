@@ -21,7 +21,7 @@ package src.com.utils {
 	import flash.net.URLRequest;
 	
 	import src.com.vo.devtripVo;
-	//import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON;
 	
 	public class dataLoader {
 		
@@ -32,7 +32,8 @@ package src.com.utils {
 		private var _request:URLRequest;
 		
 		/**
-		 * Constructor [Singelton]
+		 * Constructor: dataLoader [Singelton]
+		 * @Constructor [Initializes the object.]
 		 * */
 		public function dataLoader(){
 			if (_instance != null) throw Error('Singelton error');
@@ -73,7 +74,7 @@ package src.com.utils {
 		}
 		
 		/**
-		 * @Private
+		 * @Private Load complete handler
 		 * @param - [Event] 
 		 * @return - [void]
 		 * */
@@ -100,7 +101,7 @@ package src.com.utils {
 		}
 		
 		/**
-		 * @Private
+		 * @Private initiate data file loading
 		 * @param - [file url string] 
 		 * @return - [void]
 		 * */
@@ -113,7 +114,7 @@ package src.com.utils {
 		}
 		
 		/**
-		 * @Private
+		 * @Private popuated flash vars 
 		 * @param - [Object] 
 		 * @return - [void]
 		 * */

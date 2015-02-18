@@ -26,8 +26,9 @@ package src.com.ui {
 		private static var _instance : playButton = null;
 		
 		/**
-		 * Constructor [Singelton]
-		 * */
+		 * Constructor : progressSlider
+		 * @Constructor Initializes the object.
+		 * */ 
 		public function playButton() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
@@ -76,7 +77,7 @@ package src.com.ui {
 		}
 		
 		/**
-		 * @Private 
+		 * @Private resize elements
 		 * @param - [NA] 
 		 * @return - [Void]
 		 * */
