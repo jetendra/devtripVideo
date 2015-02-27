@@ -23,6 +23,7 @@ package src.com.ui {
 	import src.com.ui.fullscreenButton;
 	import src.com.ui.progressSlider;
 	import src.com.ui.speakerButton;
+	import src.com.ui.videoplayer;
 	
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
@@ -78,6 +79,7 @@ package src.com.ui {
 		 * @return - [void]
 		 * */
 		private function addVolumeSlider() : void {
+			//_speakerButton.instance.speakerSlider = this._speakerSlider;
 			addEvent();
 		}
 		
@@ -88,10 +90,12 @@ package src.com.ui {
 		 * */
 		private function addEvent() : void {
 			this._speakerSlider.slider.buttonMode = true;
+			this._speakerSlider.sliderArea.buttonMode = true;
 			this._speakerSlider.slider.addEventListener(MouseEvent.MOUSE_DOWN, MouseDownHandler);
 			this._speakerSlider.slider.addEventListener(MouseEvent.MOUSE_UP, MouseUpHandler);
 			this._speakerSlider.slider.addEventListener(MouseEvent.MOUSE_MOVE, MouseMoveHandler);
 			this._speakerSlider.slider.addEventListener(MouseEvent.CLICK, MouseClickHandler);
+			this._speakerSlider.sliderArea.addEventListener(MouseEvent.CLICK, MouseClickHandler);
 		}
 		
 		/**
@@ -104,6 +108,7 @@ package src.com.ui {
 			this._speakerSlider.slider.removeEventListener(MouseEvent.MOUSE_UP, MouseUpHandler);
 			this._speakerSlider.slider.removeEventListener(MouseEvent.MOUSE_MOVE, MouseMoveHandler);
 			this._speakerSlider.slider.removeEventListener(MouseEvent.CLICK, MouseClickHandler);
+			this._speakerSlider.sliderArea.removeEventListener(MouseEvent.CLICK, MouseClickHandler);
 		}
 		
 		/**
@@ -124,6 +129,7 @@ package src.com.ui {
 		 * */
 		private function MouseUpHandler(evt : MouseEvent) : void {
 			this._speakerSlider.slider.stopDrag();
+			setVolume();			
 		}
 		
 		/**
@@ -134,6 +140,7 @@ package src.com.ui {
 		private function stageMouseUpHandler(evt : MouseEvent) : void {
 			stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
 			this._speakerSlider.slider.stopDrag();
+			setVolume();
 		}
 		
 		/**
@@ -151,7 +158,18 @@ package src.com.ui {
 		 * @return - [void]
 		 * */
 		private function MouseClickHandler(evt : MouseEvent) : void {
-			
+			this._speakerSlider.slider.x += this._speakerSlider.slider.mouseX;
+			setVolume();
+		}
+		
+		/**
+		 * @Private set volume level of video
+		 * @param - [NA] 
+		 * @return - [void]
+		 * */
+		private function setVolume() : void {
+			var a : MovieClip = this._speakerSlider.slider;
+			videoplayer.instance.setVolume(1 + (a.x / a.width));
 		}
 		
 		/**

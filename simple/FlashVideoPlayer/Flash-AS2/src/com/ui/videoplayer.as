@@ -145,7 +145,7 @@ class src.com.ui.videoplayer extends uiBase {
 						// BUFFER EMPTY - Data is not being received quickly enough to fill the buffer. 
 						// Data flow will be interrupted until the buffer refills, at which time a NetStream.Buffer.Full 
 						// message will be sent and the stream will begin playing again.
-						_ui.videocontrols.setPlaySpinner();
+						if(devtripVo.instance.isPlaying)_ui.videocontrols.setPlaySpinner();
 						break;
 					case "NetStream.Buffer.Full":
 						// BUFFER FULL - The buffer is full and the stream will begin playing.

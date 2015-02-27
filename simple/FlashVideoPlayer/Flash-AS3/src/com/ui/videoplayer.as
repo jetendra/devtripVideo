@@ -209,7 +209,7 @@ package src.com.ui {
 		private function streamStatusHandler(evt : NetStatusEvent) : void {
 			switch (evt.info.code) {
 				case "NetStream.Buffer.Empty":
-				 	_videocontrols.setPlaySpinner();
+				 	if(devtripVo.instance.isPlaying)_videocontrols.setPlaySpinner();
 					//Flash Player is not receiving data quickly enough to fill the buffer. Data flow is interrupted until the buffer refills, at which time a NetStream.Buffer.Full message is sent and the stream begins playing again.
 					break;
 				case "NetStream.Buffer.Full": //status
@@ -396,7 +396,7 @@ package src.com.ui {
 		}
 		
 		public function setVolume(l:Number) : void {
-			_videoVolumeTransform.volume = Math.floor(l);
+			_videoVolumeTransform.volume = Math.floor(l*100)/100;
 			if(_netStrm)_netStrm.soundTransform = _videoVolumeTransform;
 		}
 		

@@ -15,14 +15,16 @@ The end-user documentation included with the redistribution, if any, must includ
 **/
 package src.com.ui {
 	import src.com.utils.base.buttonBase;
-	/*import src.com.ui.videoplayer;
-	import src.com.vo.devtripVo;
+	import flash.events.MouseEvent;
+	import src.com.ui.videocontrols;
+	import flash.display.MovieClip;
+	/*import src.com.vo.devtripVo;
 	import flash.external.ExternalInterface;*/
 	
 	public class speakerButton extends buttonBase {
 		
 		private static var _instance : speakerButton = null;
-		//public var speakerSlider : MovieClip;
+		private var _speakerSlider : MovieClip;
 		
 		/**
 		 * Constructor [Singelton]
@@ -30,7 +32,7 @@ package src.com.ui {
 		public function speakerButton() {
 			if (_instance != null) throw Error('Singelton error');
 			_instance = this;
-			//init();
+			init();
 		}
 		
 		/**
@@ -44,6 +46,12 @@ package src.com.ui {
 			}
 			return _instance;
 		}
+		
+		public function set speakerSlider(value : MovieClip) : void{
+			_speakerSlider = value;
+			//addEvent();
+		}
+		
 		
 		
 	}
