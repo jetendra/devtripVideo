@@ -77,7 +77,6 @@ Group: Utils  {
    File: buttonInterface  (utils\interfaces\buttonInterface.as)
    File: dataLoader  (utils\dataLoader.as)
    File: imageLoader  (utils\imageLoader.as)
-   File: SWFLoader  (utils\swfLoader.as)
    File: uiBase  (utils\base\uiBase.as)
    File: uiInterface  (utils\interfaces\uiInterface.as)
    }  # Group: Utils

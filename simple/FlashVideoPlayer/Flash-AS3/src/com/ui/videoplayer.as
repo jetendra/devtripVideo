@@ -19,6 +19,7 @@ package src.com.ui {
 	import src.com.utils.base.uiBase;
 	import src.com.vo.devtripVo;
 	import src.com.ui.videocontrols;
+	import src.com.utils.imageLoader;
 	import flash.net.NetConnection;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
@@ -37,6 +38,7 @@ package src.com.ui {
 		private var _netStrm : NetStream = null;
 		private var _client : Object;
 		public var video : Video;
+		public var poster : *;
 		
 		private var _loadedInterval:uint;
 		private var _videoVolumeTransform : SoundTransform;
@@ -115,9 +117,8 @@ package src.com.ui {
 		 * @return - [void]
 		 * */
 		private function loadPoster() : void {
-			//this.poster.loadMovie( _data.assetsPath +"/"+_data.videoImage );
-			//_ui.poster.loadedmovie = true;
-			//addElement(_ui.poster);
+			var _data : Object = devtripVo.instance.params;
+			imageLoader.instance.loadImage(_data.assetsPath.toString()+"/"+_data.videoImage.toString(),this.poster);
 		}
 		
 		/**
@@ -126,7 +127,7 @@ package src.com.ui {
 		 * @return - [void]
 		 * */
 		public function hidePoster() : void {
-			//this.poster.visible = false;
+			this.poster.visible = false;
 		}
 		
 		/**
@@ -342,7 +343,7 @@ package src.com.ui {
 		/**
 		 * @Private asynch error handler
 		 * @param - [AsyncErrorEvent] 
-		 * @return - [Void]
+		 * @return - [void]
 		 * */
 		private function asyncErrorHandler(evt : AsyncErrorEvent) : void {
 			
@@ -351,7 +352,7 @@ package src.com.ui {
 		/**
 		 * @Private meta data handler
 		 * @param - [Object] 
-		 * @return - [Void]
+		 * @return - [void]
 		 * */
 		private function metaDataHandler(infoObject:Object) : void {
 			devtripVo.instance.infoObject = infoObject;
@@ -363,7 +364,7 @@ package src.com.ui {
 		/**
 		 * @Public play video 
 		 * @param - [NA] 
-		 * @return - [Void]
+		 * @return - [void]
 		 * */
 		public function playVideo() : void {
 			if(devtripVo.instance.isPlaying){
@@ -378,7 +379,7 @@ package src.com.ui {
 		/**
 		 * @Public pause video
 		 * @param - [NA] 
-		 * @return - [Void]
+		 * @return - [void]
 		 * */
 		public function pauseVideo(str : String) : void{
 			if(!devtripVo.instance.isPlaying)_netStrm.seek(0);
@@ -395,6 +396,11 @@ package src.com.ui {
 			}
 		}
 		
+		/**
+		 * @Public set volume
+		 * @param - [Number] 
+		 * @return - [void]
+		 * */
 		public function setVolume(l:Number) : void {
 			_videoVolumeTransform.volume = Math.floor(l*100)/100;
 			if(_netStrm)_netStrm.soundTransform = _videoVolumeTransform;
@@ -403,7 +409,7 @@ package src.com.ui {
 		/**
 		 * @Public set stream time
 		 * @param - [Number] 
-		 * @return - [Void]
+		 * @return - [void]
 		 * */
 		public function setSteramTime(l:Number) : void {
 			if(devtripVo.instance.isPlaying && _netStrm)_netStrm.seek(l / 100 * devtripVo.instance.infoObject.duration);
@@ -412,7 +418,7 @@ package src.com.ui {
 		/**
 		 * @Private check bytes loaded and set seek slider
 		 * @param - [NA] 
-		 * @return - [Void]
+		 * @return - [void]
 		 * */
 		private function checkBytesLoaded() : void {
 			_videocontrols._progressSlider.setSeek(_netStrm.time / devtripVo.instance.infoObject.duration * 100);
