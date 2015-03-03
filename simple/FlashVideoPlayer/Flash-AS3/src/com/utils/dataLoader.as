@@ -59,8 +59,8 @@ package src.com.utils {
 		 * */
 		public function loadData( dataObj : Object , dataLoadHandler_Callback : Function ) : void {
 			_dataLoadHandler_Callback = dataLoadHandler_Callback;
-			var file : String = (dataObj.url != undefined) ? dataObj.url : "data.xml" ;
-			_fileExtension = file.split(".")[1];
+			var file : String = (dataObj.url != undefined) ? dataObj.url : null ;
+			_fileExtension = (file) ? file.split(".")[1] : "";
 			
 			switch(_fileExtension){
 				case 'json':
@@ -119,8 +119,27 @@ package src.com.utils {
 		 * @return - [void]
 		 * */
 		private function loadFlashVars(dataObj : Object) : void {
-			devtripVo.instance.params = dataObj;
+			var tparamsObj : Object = new Object();
+			tparamsObj['width'] = (dataObj.DT_width != undefined) ? dataObj.DT_width : 640 ;
+			tparamsObj['height'] = (dataObj.DT_height != undefined) ? dataObj.DT_height : 480;
+			tparamsObj['video'] = (dataObj.DT_video != undefined) ? dataObj.DT_video : 'abc';
+			tparamsObj['autoplay'] = (dataObj.DT_autoplay != undefined) ? dataObj.DT_autoplay : false;
+			tparamsObj['videoImage'] = (dataObj.DT_videoImage != undefined) ? dataObj.DT_videoImage : 'abc.png';
+			tparamsObj['assetsPath'] = (dataObj.DT_assetsPath != undefined) ? dataObj.DT_assetsPath : '';
+			devtripVo.instance.params = tparamsObj;
+			
+			var tconfigObj : Object = new Object();
+			//tbd
+			devtripVo.instance.config = tconfigObj;
+			
+			var tcopyrightObj : Object = new Object();
+			tcopyrightObj['info'] = '© 2015 devtrip video';
+			tcopyrightObj['visitdata'] = 'visit DevTrip website';
+			tcopyrightObj['visiturl'] = 'http://www.devtrip.com';
+			devtripVo.instance.copyright = tcopyrightObj;
+			
 			_dataLoadHandler_Callback();
+			
 		}
 	}
 }

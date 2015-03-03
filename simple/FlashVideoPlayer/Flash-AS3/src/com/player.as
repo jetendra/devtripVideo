@@ -78,7 +78,7 @@ package src.com{
 		 * @return - [void]
 		 * */
 		private function attachVideoUI() : void {
-			_videoplayer = new videoplayer();
+			_videoplayer = videoplayer.instance;
 			addElement(_videoplayer);
 		}
 		
