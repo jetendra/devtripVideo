@@ -92,7 +92,8 @@ package src.com.ui {
 		 * */
 		private function attachVideoControl() : void {
 			_videocontrols = videocontrols.instance;
-			_videocontrols.y = devtripVo.instance.params.height;
+			_videocontrols.x = this.x;
+			_videocontrols.y = this.y + this.height//devtripVo.instance.params.height;
 			addElement(_videocontrols);
 		}
 		
