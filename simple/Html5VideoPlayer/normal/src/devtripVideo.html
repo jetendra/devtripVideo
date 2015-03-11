@@ -10,15 +10,17 @@
 		<center>
 			<div id="playercontainer1">
 				<script type="text/javascript">
+					
 					var params = {},_devtripVideo = new devtripVideo();
-					params.containerId = "playercontainer1";
-					params.width = "320";
-					params.height = "240";
-					params.video = "abc";
-					params.autoplay = false;
-					params.videoImage = "abc.png";
-					_devtripVideo.setPath("assets/");
-					_devtripVideo.init(params);					
+					params.containerId = "playercontainer1"; // associate player with a container
+					params.width = "320"; // set width of the player
+					params.height = "240";// set height of the player
+					params.video = "abc"; //.mp4,.webm, .ogg format should be available at asset path
+					params.autoplay = false;// disable auto play 
+					params.videoImage = "abc.png";//image should be available at asset path
+					_devtripVideo.setPath("assets/");//default path is "" 
+					_devtripVideo.init(params);	// call to initialise player and its object
+					//_devtripVideo.dispose();// call to remove internal listener of player	
 				</script>
 			</div>
 			<div id="playercontainer2">
@@ -32,6 +34,7 @@
 					params.videoImage = "abc.png";
 					_devtripVideo1.setPath("assets/");
 					_devtripVideo1.init(params);
+					//_devtripVideo1.dispose();// call to remove internal listener of player	
 				</script>
 			</div>
 		</center>

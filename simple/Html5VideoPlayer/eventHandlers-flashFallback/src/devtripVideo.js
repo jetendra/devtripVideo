@@ -139,7 +139,6 @@ var devtripVideo = function(){
 		cllback_playingHandler.call();
 	};
 	
-
 	function volumechangeHandler(e){
 		cllback_volumechangeHandler.call();
 	};
@@ -181,7 +180,6 @@ var devtripVideo = function(){
 	};
 
 	function addEvents(DT_id){
-		
 		var videoElement = document.getElementById(DT_id);
 		addEvent(videoElement,'error',errorHandler, true); //video error with message 
 		addEvent(videoElement,"loadedmetadata", loadedmetadataHandler, false);//Metadata loaded
