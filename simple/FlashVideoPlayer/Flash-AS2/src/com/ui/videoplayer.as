@@ -58,7 +58,7 @@ class src.com.ui.videoplayer extends uiBase {
 		_ui = devtripVo.instance.ui.videoplayer;
 		_data = devtripVo.instance.params;
 		
-		_ui.attachMovie("videocontrols","videocontrols",2,{_x : this._x, _y : this._y + this._height - 36 * devtripVo.instance.resizeFactor});
+		_ui.attachMovie("videocontrols","videocontrols",2,{_x : this._x, _y : this._y + this._height});// - 36 * devtripVo.instance.resizeFactor
 		devtripVo.instance.ui.videoplayer.attached = true;
 		addElement(devtripVo.instance.ui.videoplayer);
 	}
